@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kimera Co. — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/design-system.css">
+<style>
+/* ── DS Page Styles ─────────────────────────────────────────── */
+.ds-layout { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.ds-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid var(--c-border);
+  padding: 32px 0;
+  background: var(--c-black-100);
+}
+.ds-sidebar-brand {
+  padding: 0 24px 32px;
+  border-bottom: 1px solid var(--c-border);
+  margin-bottom: 24px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.ds-sidebar-brand span { color: var(--c-accent); }
+.ds-sidebar-section {
+  padding: 0 24px;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-white-45);
+}
+.ds-sidebar-link {
+  display: block;
+  padding: 8px 24px;
+  font-size: 13px;
+  color: var(--c-white-45);
+  transition: color 150ms, background 150ms;
+  border-left: 2px solid transparent;
+}
+.ds-sidebar-link:hover { color: var(--c-white); background: var(--c-white-03); }
+.ds-sidebar-link.active { color: var(--c-accent); border-color: var(--c-accent); }
+
+/* Main content */
+.ds-main {
+  flex: 1;
+  padding: 64px;
+  max-width: 1100px;
+  overflow-x: hidden;
+}
+@media (max-width: 900px) {
+  .ds-layout { flex-direction: column; }
+  .ds-sidebar { width: 100%; height: auto; position: relative; }
+  .ds-main { padding: 32px 24px; }
+}
+
+.ds-section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--c-border);
+  scroll-margin-top: 40px;
+}
+.ds-section:last-child { border-bottom: none; }
+
+/* Hero */
+.ds-hero {
+  padding: 80px 64px;
+  border-bottom: 1px solid var(--c-border);
+  position: relative;
+  overflow: hidden;
+  background: var(--c-black-100);
+}
+.ds-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(255,32,32,0.08) 0%, transparent 70%);
+}
+.ds-hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: 16px;
+}
+.ds-hero-eyebrow::before { content: '// '; opacity: 0.5; }
+.ds-hero-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  margin-bottom: 16px;
+}
+.ds-hero-title span { color: var(--c-accent); }
+.ds-hero-sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--c-white-45);
+  letter-spacing: 0.06em;
+}
+
+/* Section headers */
+.ds-section-header { margin-bottom: 48px; }
+.ds-section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: 12px;
+}
+.ds-section-eyebrow::before { content: '// '; opacity: 0.5; }
+.ds-section-title {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.ds-section-desc {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--c-white-45);
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+/* Token grid */
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.token-swatch {
+  height: 80px;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  transition: transform 200ms;
+  border: 1px solid var(--c-border);
+}
+.token-swatch:hover { transform: scale(1.03); }
+.token-swatch-label { color: rgba(255,255,255,0.7); line-height: 1.4; }
+
+/* Space tokens */
+.space-scale {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.space-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.space-bar {
+  height: 20px;
+  background: var(--c-accent-20);
+  border: 1px solid var(--c-border-r);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.space-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--c-white-45);
+  white-space: nowrap;
+}
+
+/* Type specimens */
+.type-specimen { display: flex; flex-direction: column; gap: 2px; }
+.type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 16px;
+  border-bottom: 1px solid var(--c-border);
+  border-radius: 4px;
+  margin: 0 -16px;
+  transition: background 150ms;
+}
+.type-row:hover { background: var(--c-white-03); }
+.type-meta { width: 180px; flex-shrink: 0; }
+.type-meta-name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-accent); display: block; }
+.type-meta-spec { font-family: var(--font-mono); font-size: 10px; color: var(--c-white-45); display: block; margin-top: 4px; }
+.type-sample { flex: 1; }
+
+/* Buttons showcase */
+.btn-grid { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 32px; }
+
+/* Component grid */
+.component-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+
+/* Code block */
+.ds-code {
+  background: var(--c-black-200);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  padding: 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--c-white-72);
+  overflow-x: auto;
+  margin-top: 24px;
+}
+.ds-code .c  { color: var(--c-white-45); }
+.ds-code .k  { color: var(--c-accent); }
+.ds-code .v  { color: #4DA3FF; }
+
+/* Effects showcase */
+.effect-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+.effect-card {
+  height: 120px;
+  border-radius: 12px;
+  border: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  color: var(--c-white-45);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 300ms;
+}
+.effect-glow:hover { border-color: var(--c-accent); box-shadow: 0 0 40px var(--c-accent-20); color: var(--c-accent); }
+.effect-lift:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.2); }
+.effect-bg:hover { background: var(--c-accent-10); border-color: var(--c-border-r); color: var(--c-white); }
+
+/* Radius samples */
+.radius-grid { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+.radius-box {
+  width: 80px; height: 80px;
+  background: var(--c-white-05);
+  border: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--c-white-45);
+  flex-direction: column;
+  gap: 4px;
+}
+</style>
+</head>
+<body>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<div class="ds-layout">
+  <!-- ─── SIDEBAR ─────────────────────────────────────────── -->
+  <nav class="ds-sidebar" aria-label="Design System navigation">
+    <div class="ds-sidebar-brand">Kimera<span>.</span> DS</div>
+
+    <div class="ds-sidebar-section">Fundação</div>
+    <a href="#tokens" class="ds-sidebar-link active">Tokens & Cores</a>
+    <a href="#typography" class="ds-sidebar-link">Tipografia</a>
+    <a href="#spacing" class="ds-sidebar-link">Espaçamento</a>
+    <a href="#shape" class="ds-sidebar-link">Shape & Radius</a>
+    <a href="#shadows" class="ds-sidebar-link">Sombras & Blur</a>
+
+    <div class="ds-sidebar-section" style="margin-top:16px;">Componentes</div>
+    <a href="#buttons" class="ds-sidebar-link">Botões</a>
+    <a href="#inputs" class="ds-sidebar-link">Inputs</a>
+    <a href="#cards" class="ds-sidebar-link">Cards</a>
+    <a href="#badges" class="ds-sidebar-link">Badges</a>
+
+    <div class="ds-sidebar-section" style="margin-top:16px;">Padrões</div>
+    <a href="#effects" class="ds-sidebar-link">Efeitos Hover</a>
+    <a href="#grid" class="ds-sidebar-link">Grid & Layout</a>
+    <a href="#motion" class="ds-sidebar-link">Motion</a>
+  </nav>
+
+  <!-- ─── MAIN ───────────────────────────────────────────── -->
+  <div style="flex:1;overflow-x:hidden;">
+    <!-- Hero -->
+    <div class="ds-hero">
+      <div class="ds-hero-eyebrow">Design System v1.0</div>
+      <h1 class="ds-hero-title">Kimera<span>.</span><br>Design System</h1>
+      <p class="ds-hero-sub">Fundação visual unificada — tokens, componentes, efeitos e padrões de motion.</p>
+    </div>
+
+    <div class="ds-main">
+
+      <!-- ─── TOKENS & CORES ──────────────────────────────── -->
+      <section class="ds-section" id="tokens">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Foundation</div>
+          <h2 class="ds-section-title">Tokens & Cores</h2>
+          <p class="ds-section-desc">Paleta base com accent vermelho sobre fundo preto. Todos os valores disponíveis como variáveis CSS.</p>
+        </div>
+
+        <div style="margin-bottom:8px;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);letter-spacing:0.08em;text-transform:uppercase;">Accent</div>
+        <div class="token-grid">
+          <div class="token-swatch" style="background:#FF2020;">
+            <span class="token-swatch-label">--c-accent<br>#FF2020</span>
+          </div>
+          <div class="token-swatch" style="background:rgba(255,32,32,0.40);">
+            <span class="token-swatch-label">--c-accent-40<br>rgba(255,32,32,.4)</span>
+          </div>
+          <div class="token-swatch" style="background:rgba(255,32,32,0.20);">
+            <span class="token-swatch-label">--c-accent-20<br>rgba(255,32,32,.2)</span>
+          </div>
+          <div class="token-swatch" style="background:rgba(255,32,32,0.10);">
+            <span class="token-swatch-label">--c-accent-10<br>rgba(255,32,32,.1)</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:8px;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);letter-spacing:0.08em;text-transform:uppercase;">Neutros</div>
+        <div class="token-grid">
+          <div class="token-swatch" style="background:#FFFFFF;border-color:rgba(255,255,255,0.2);">
+            <span class="token-swatch-label" style="color:#111;">--c-white<br>#FFFFFF</span>
+          </div>
+          <div class="token-swatch" style="background:rgba(255,255,255,0.72);">
+            <span class="token-swatch-label">--c-white-72</span>
+          </div>
+          <div class="token-swatch" style="background:rgba(255,255,255,0.45);">
+            <span class="token-swatch-label">--c-white-45</span>
+          </div>
+          <div class="token-swatch" style="background:rgba(255,255,255,0.18);">
+            <span class="token-swatch-label">--c-white-18</span>
+          </div>
+          <div class="token-swatch" style="background:#222222;">
+            <span class="token-swatch-label">--c-black-400<br>#222</span>
+          </div>
+          <div class="token-swatch" style="background:#181818;">
+            <span class="token-swatch-label">--c-black-300<br>#181818</span>
+          </div>
+          <div class="token-swatch" style="background:#111111;">
+            <span class="token-swatch-label">--c-black-200<br>#111</span>
+          </div>
+          <div class="token-swatch" style="background:#080808;">
+            <span class="token-swatch-label">--c-black-100<br>#080808</span>
+          </div>
+        </div>
+
+        <div class="ds-code">
+<span class="c">/* CSS variables — raiz do projeto */</span>
+<span class="k">:root</span> {
+  <span class="k">--c-accent</span>:   <span class="v">#FF2020</span>;
+  <span class="k">--c-black</span>:    <span class="v">#000000</span>;
+  <span class="k">--c-white</span>:    <span class="v">#FFFFFF</span>;
+  <span class="k">--c-white-72</span>: <span class="v">rgba(255,255,255,0.72)</span>;
+  <span class="k">--c-white-45</span>: <span class="v">rgba(255,255,255,0.45)</span>;
+  ...
+}</div>
+      </section>
+
+      <!-- ─── TIPOGRAFIA ──────────────────────────────────── -->
+      <section class="ds-section" id="typography">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Foundation</div>
+          <h2 class="ds-section-title">Tipografia</h2>
+          <p class="ds-section-desc"><strong>Syne</strong> — display, headings e UI. <strong>Space Mono</strong> — labels, código e detalhes técnicos.</p>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-meta-name">Hero</span>
+              <span class="type-meta-spec">clamp(3.5rem, 10vw, 8rem) · 800 · −0.04em</span>
+            </div>
+            <div class="type-sample" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:800;letter-spacing:-0.04em;line-height:0.92;">Kimera.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-meta-name">H1</span>
+              <span class="type-meta-spec">clamp(3rem, 7vw, 6rem) · 800 · −0.035em</span>
+            </div>
+            <div class="type-sample" style="font-size:clamp(2rem,4vw,3.5rem);font-weight:800;letter-spacing:-0.035em;line-height:0.95;">Presença Digital</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-meta-name">H2</span>
+              <span class="type-meta-spec">clamp(2.2rem, 5vw, 4.5rem) · 700 · −0.03em</span>
+            </div>
+            <div class="type-sample" style="font-size:clamp(1.6rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.03em;line-height:1;">Sua marca no digital</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-meta-name">H3</span>
+              <span class="type-meta-spec">clamp(1.6rem, 3vw, 2.8rem) · 700 · −0.02em</span>
+            </div>
+            <div class="type-sample" style="font-size:clamp(1.25rem,2vw,1.8rem);font-weight:700;letter-spacing:-0.02em;line-height:1.1;">Método Kimera</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-meta-name">Body LG</span>
+              <span class="type-meta-spec">1.125rem · 400 · 1.7 lh</span>
+            </div>
+            <div class="type-sample" style="font-size:1.125rem;color:rgba(255,255,255,0.72);line-height:1.7;">Site profissional, identidade visual e e-mail corporativo, tudo em um só lugar.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-meta-name">Body</span>
+              <span class="type-meta-spec">1rem · 400 · 1.65 lh</span>
+            </div>
+            <div class="type-sample" style="font-size:1rem;color:rgba(255,255,255,0.72);line-height:1.65;">Texto de suporte e descrição de componentes com comprimento normal.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-meta-name">Label (Mono)</span>
+              <span class="type-meta-spec">0.6875rem · 400 · 0.12em ls · UPPER</span>
+            </div>
+            <div class="type-sample" style="font-family:'Space Mono',monospace;font-size:0.6875rem;letter-spacing:0.12em;text-transform:uppercase;color:#FF2020;">// Rótulo de seção</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SPACING ─────────────────────────────────────── -->
+      <section class="ds-section" id="spacing">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Foundation</div>
+          <h2 class="ds-section-title">Espaçamento</h2>
+          <p class="ds-section-desc">Escala multiplicativa base-4 para consistência total entre componentes.</p>
+        </div>
+        <div class="space-scale">
+          <div class="space-item"><div class="space-bar" style="width:2px;"></div><span class="space-label">--sp-2 · 2px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:4px;"></div><span class="space-label">--sp-4 · 4px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:8px;"></div><span class="space-label">--sp-8 · 8px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:12px;"></div><span class="space-label">--sp-12 · 12px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:16px;"></div><span class="space-label">--sp-16 · 16px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:24px;"></div><span class="space-label">--sp-24 · 24px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:32px;"></div><span class="space-label">--sp-32 · 32px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:48px;"></div><span class="space-label">--sp-48 · 48px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:64px;"></div><span class="space-label">--sp-64 · 64px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:80px;"></div><span class="space-label">--sp-80 · 80px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:96px;"></div><span class="space-label">--sp-96 · 96px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:128px;"></div><span class="space-label">--sp-128 · 128px</span></div>
+          <div class="space-item"><div class="space-bar" style="width:160px;"></div><span class="space-label">--sp-160 · 160px (section-pad)</span></div>
+        </div>
+      </section>
+
+      <!-- ─── SHAPE ────────────────────────────────────────── -->
+      <section class="ds-section" id="shape">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Foundation</div>
+          <h2 class="ds-section-title">Shape & Radius</h2>
+        </div>
+        <div class="radius-grid">
+          <div class="radius-box" style="border-radius:var(--r-sm);">
+            <span style="font-size:16px;">⬜</span>
+            <span>--r-sm · 4px</span>
+          </div>
+          <div class="radius-box" style="border-radius:var(--r-md);">
+            <span style="font-size:16px;">⬜</span>
+            <span>--r-md · 8px</span>
+          </div>
+          <div class="radius-box" style="border-radius:var(--r-lg);">
+            <span style="font-size:16px;">⬜</span>
+            <span>--r-lg · 12px</span>
+          </div>
+          <div class="radius-box" style="border-radius:var(--r-xl);">
+            <span style="font-size:16px;">⬜</span>
+            <span>--r-xl · 20px</span>
+          </div>
+          <div class="radius-box" style="border-radius:var(--r-pill);">
+            <span style="font-size:16px;">⭕</span>
+            <span>--r-pill · 999px</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SHADOWS ──────────────────────────────────────── -->
+      <section class="ds-section" id="shadows">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Foundation</div>
+          <h2 class="ds-section-title">Sombras & Blur</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+          <div style="height:100px;background:var(--c-black-200);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;color:var(--c-white-45);box-shadow:var(--shadow-sm);">--shadow-sm</div>
+          <div style="height:100px;background:var(--c-black-200);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;color:var(--c-white-45);box-shadow:var(--shadow-md);">--shadow-md</div>
+          <div style="height:100px;background:var(--c-black-200);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;color:var(--c-white-45);box-shadow:var(--shadow-lg);">--shadow-lg</div>
+        </div>
+        <div style="margin-top:32px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+          <div style="padding:16px;background:rgba(255,255,255,0.03);backdrop-filter:blur(4px);border:1px solid var(--c-border);border-radius:8px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);">blur-sm · 4px</div>
+          <div style="padding:16px;background:rgba(255,255,255,0.03);backdrop-filter:blur(12px);border:1px solid var(--c-border);border-radius:8px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);">blur-md · 12px</div>
+          <div style="padding:16px;background:rgba(255,255,255,0.03);backdrop-filter:blur(24px);border:1px solid var(--c-border);border-radius:8px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);">blur-lg · 24px</div>
+          <div style="padding:16px;background:rgba(255,255,255,0.03);backdrop-filter:blur(48px);border:1px solid var(--c-border);border-radius:8px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);">blur-xl · 48px</div>
+        </div>
+      </section>
+
+      <!-- ─── BUTTONS ──────────────────────────────────────── -->
+      <section class="ds-section" id="buttons">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Components</div>
+          <h2 class="ds-section-title">Botões</h2>
+        </div>
+
+        <p style="font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Variantes</p>
+        <div class="btn-grid">
+          <button class="btn btn-primary">btn-primary</button>
+          <button class="btn btn-secondary">btn-secondary</button>
+          <button class="btn btn-ghost">btn-ghost</button>
+        </div>
+
+        <p style="font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Tamanhos</p>
+        <div class="btn-grid">
+          <button class="btn btn-primary btn-sm">btn-sm</button>
+          <button class="btn btn-primary">padrão</button>
+          <button class="btn btn-primary btn-lg">btn-lg</button>
+        </div>
+
+        <p style="font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Com arrow</p>
+        <div class="btn-grid">
+          <button class="btn btn-primary btn-arrow">Começar <span class="arrow">→</span></button>
+          <button class="btn btn-ghost btn-arrow">Ver mais <span class="arrow">→</span></button>
+        </div>
+      </section>
+
+      <!-- ─── INPUTS ───────────────────────────────────────── -->
+      <section class="ds-section" id="inputs">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Components</div>
+          <h2 class="ds-section-title">Inputs</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:600px;">
+          <div>
+            <label style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--c-white-45);display:block;margin-bottom:8px;">Nome</label>
+            <input class="input" type="text" placeholder="Seu nome completo">
+          </div>
+          <div>
+            <label style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--c-white-45);display:block;margin-bottom:8px;">E-mail</label>
+            <input class="input" type="email" placeholder="voce@empresa.com">
+          </div>
+          <div style="grid-column:span 2;">
+            <label style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--c-white-45);display:block;margin-bottom:8px;">Mensagem</label>
+            <textarea class="input" rows="4" placeholder="Descreva seu projeto..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── CARDS ────────────────────────────────────────── -->
+      <section class="ds-section" id="cards">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Components</div>
+          <h2 class="ds-section-title">Cards</h2>
+        </div>
+        <div class="component-grid">
+          <div class="card" style="padding:32px;">
+            <p style="font-family:var(--font-mono);font-size:10px;color:var(--c-accent);margin-bottom:12px;letter-spacing:0.1em;">CARD BASE</p>
+            <h3 style="font-size:1.1rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:8px;">Título do card</h3>
+            <p style="font-size:13px;color:var(--c-white-45);line-height:1.6;">Descrição de suporte com informação relevante sobre o item.</p>
+          </div>
+          <div class="card card-glow" style="padding:32px;">
+            <p style="font-family:var(--font-mono);font-size:10px;color:var(--c-accent);margin-bottom:12px;letter-spacing:0.1em;">CARD GLOW</p>
+            <h3 style="font-size:1.1rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:8px;">Com glow on hover</h3>
+            <p style="font-size:13px;color:var(--c-white-45);line-height:1.6;">Passe o mouse para ver o efeito de glow no border.</p>
+          </div>
+          <div class="card" style="padding:32px;border-color:var(--c-accent-40);">
+            <p style="font-family:var(--font-mono);font-size:10px;color:var(--c-accent);margin-bottom:12px;letter-spacing:0.1em;">CARD FEATURED</p>
+            <h3 style="font-size:1.1rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:8px;">Estado destacado</h3>
+            <p style="font-size:13px;color:var(--c-white-45);line-height:1.6;">Border color --c-accent-40 para indicar destaque/seleção.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── BADGES ───────────────────────────────────────── -->
+      <section class="ds-section" id="badges">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Components</div>
+          <h2 class="ds-section-title">Badges & Labels</h2>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <span class="label-badge">Serviços</span>
+          <span class="label-badge">Método</span>
+          <span class="label-badge">Mais popular</span>
+          <span class="label-badge">Portfólio</span>
+          <span class="label-badge">FAQ</span>
+        </div>
+      </section>
+
+      <!-- ─── EFFECTS ──────────────────────────────────────── -->
+      <section class="ds-section" id="effects">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Patterns</div>
+          <h2 class="ds-section-title">Efeitos Hover</h2>
+          <p class="ds-section-desc">Passe o mouse sobre os cards para ver os efeitos.</p>
+        </div>
+        <div class="effect-row">
+          <div class="effect-card effect-glow">Glow</div>
+          <div class="effect-card effect-lift">Lift</div>
+          <div class="effect-card effect-bg">BG Fill</div>
+        </div>
+      </section>
+
+      <!-- ─── GRID ─────────────────────────────────────────── -->
+      <section class="ds-section" id="grid">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Patterns</div>
+          <h2 class="ds-section-title">Grid & Layout</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:8px;margin-bottom:24px;">
+          <div style="grid-column:span 12;background:var(--c-accent-10);border:1px solid var(--c-border-r);border-radius:4px;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--c-accent);text-align:center;">12 cols</div>
+          <div style="grid-column:span 6;background:var(--c-white-05);border:1px solid var(--c-border);border-radius:4px;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);text-align:center;">6</div>
+          <div style="grid-column:span 6;background:var(--c-white-05);border:1px solid var(--c-border);border-radius:4px;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);text-align:center;">6</div>
+          <div style="grid-column:span 4;background:var(--c-white-05);border:1px solid var(--c-border);border-radius:4px;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);text-align:center;">4</div>
+          <div style="grid-column:span 4;background:var(--c-white-05);border:1px solid var(--c-border);border-radius:4px;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);text-align:center;">4</div>
+          <div style="grid-column:span 4;background:var(--c-white-05);border:1px solid var(--c-border);border-radius:4px;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);text-align:center;">4</div>
+          <div style="grid-column:span 3;background:var(--c-white-05);border:1px solid var(--c-border);border-radius:4px;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);text-align:center;">3</div>
+          <div style="grid-column:span 3;background:var(--c-white-05);border:1px solid var(--c-border);border-radius:4px;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);text-align:center;">3</div>
+          <div style="grid-column:span 3;background:var(--c-white-05);border:1px solid var(--c-border);border-radius:4px;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);text-align:center;">3</div>
+          <div style="grid-column:span 3;background:var(--c-white-05);border:1px solid var(--c-border);border-radius:4px;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);text-align:center;">3</div>
+        </div>
+        <div class="ds-code">
+<span class="c">/* Container máximo */</span>
+<span class="k">--max-w</span>: <span class="v">1400px</span>;
+<span class="k">--page-px</span>: <span class="v">clamp(20px, 5vw, 80px)</span>;
+
+<span class="c">/* Grid helpers */</span>
+<span class="k">.grid-12</span> { display: grid; grid-template-columns: repeat(<span class="v">12</span>, <span class="v">1fr</span>); gap: <span class="v">24px</span>; }
+<span class="k">.grid-3</span>  { display: grid; grid-template-columns: repeat(<span class="v">3</span>, <span class="v">1fr</span>); gap: <span class="v">24px</span>; }
+<span class="k">.grid-2</span>  { display: grid; grid-template-columns: repeat(<span class="v">2</span>, <span class="v">1fr</span>); gap: <span class="v">24px</span>; }
+        </div>
+      </section>
+
+      <!-- ─── MOTION ───────────────────────────────────────── -->
+      <section class="ds-section" id="motion">
+        <div class="ds-section-header">
+          <div class="ds-section-eyebrow">Patterns</div>
+          <h2 class="ds-section-title">Motion & Easing</h2>
+          <p class="ds-section-desc">GSAP como motor principal. Todas as animações respeitam <code style="font-family:var(--font-mono);color:var(--c-accent);">prefers-reduced-motion</code>.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div class="ds-code" style="margin-top:0;">
+<span class="c">/* Easings */</span>
+<span class="k">--ease-out</span>:    <span class="v">cubic-bezier(0.25, 0.10, 0.25, 1.00)</span>;
+<span class="k">--ease-spring</span>: <span class="v">cubic-bezier(0.34, 1.56, 0.64, 1.00)</span>;
+<span class="k">--ease-expo</span>:   <span class="v">cubic-bezier(0.16, 1.00, 0.30, 1.00)</span>;
+
+<span class="c">/* Transições CSS */</span>
+<span class="k">--tr-fast</span>: <span class="v">150ms var(--ease-out)</span>;
+<span class="k">--tr-med</span>:  <span class="v">300ms var(--ease-out)</span>;
+<span class="k">--tr-slow</span>: <span class="v">500ms var(--ease-expo)</span>;
+          </div>
+          <div class="ds-code" style="margin-top:0;">
+<span class="c">/* Padrão de reveal por seção */</span>
+gsap.from(<span class="v">'.card'</span>, {
+  opacity: <span class="v">0</span>,
+  y: <span class="v">50</span>,
+  scale: <span class="v">0.97</span>,
+  stagger: { amount: <span class="v">0.5</span> },
+  duration: <span class="v">0.9</span>,
+  ease: <span class="v">'expo.out'</span>,
+  scrollTrigger: {
+    trigger: <span class="v">'.grid'</span>,
+    start: <span class="v">'top 85%'</span>
+  }
+});
+          </div>
+        </div>
+
+        <div style="margin-top:32px;">
+          <p style="font-family:var(--font-mono);font-size:10px;color:var(--c-white-45);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Patterns usados no site</p>
+          <ul style="display:grid;grid-template-columns:1fr 1fr;gap:8px;list-style:none;">
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ Preloader com barra de progresso</li>
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ Hero text reveal por linha</li>
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ ScrollTrigger stagger nos cards</li>
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ Contadores animados ao entrar no viewport</li>
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ Tilt 3D em cards (portfolio + value)</li>
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ Magnetic effect nos CTAs</li>
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ Cursor follower (dot + ring)</li>
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ Marquee CSS infinito</li>
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ FAQ accordion com GSAP maxHeight</li>
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ Ripple click em botões primários</li>
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ Nav scrolled com blur/bg transition</li>
+            <li style="padding:12px 16px;background:var(--c-white-03);border:1px solid var(--c-border);border-radius:8px;font-size:13px;color:var(--c-white-72);">✦ Lenis smooth scroll integrado ao GSAP ticker</li>
+          </ul>
+        </div>
+      </section>
+
+    </div><!-- /.ds-main -->
+  </div>
+</div>
+
+<script>
+// Sidebar active link highlight on scroll
+const sidebarLinks = document.querySelectorAll('.ds-sidebar-link');
+const dsSections = document.querySelectorAll('.ds-section');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      sidebarLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.ds-sidebar-link[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+dsSections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
