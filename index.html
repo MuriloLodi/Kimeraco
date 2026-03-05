@@ -1,1170 +1,1460 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kimera Co. — Presença digital completa: site + identidade + e-mail profissional, para sua empresa parecer grande e vender mais.">
+  <meta name="description"
+    content="Kimera Co. — Presença digital completa: site + identidade + e-mail profissional, para sua empresa parecer grande e vender mais.">
   <meta name="theme-color" content="#000000">
   <title>Kimera Co. — Presença Digital Completa</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
+
+  <style>
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 24px;
+      transition: opacity 0.5s ease;
+    }
+
+    #preloader.done {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .preloader-logo {
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #fff;
+      font-family: sans-serif;
+    }
+
+    .preloader-logo span {
+      color: #FF2020;
+    }
+
+    .preloader-bar-wrap {
+      width: 200px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .preloader-bar {
+      height: 100%;
+      width: 0;
+      background: #FF2020;
+    }
+
+    .preloader-count {
+      font-family: monospace;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.1em;
+    }
+  </style>
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/design-system.css">
   <link rel="stylesheet" href="assets/css/styles.css">
 
   <!-- Favicon inline SVG -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='82' font-size='90'>K</text></svg>">
+  <link rel="icon" href="assets/img/logo.ico">
 </head>
+
 <body>
 
-<!-- NOISE OVERLAY -->
-<div class="noise-overlay" aria-hidden="true"></div>
-
-<!-- CUSTOM CURSOR -->
-<div class="cursor-dot" aria-hidden="true"></div>
-<div class="cursor-ring" aria-hidden="true"></div>
-
-<!-- ─── PRELOADER ──────────────────────────────────────────── -->
-<div id="preloader" role="status" aria-label="Carregando...">
-  <div class="preloader-logo">Kimera<span>.</span></div>
-  <div class="preloader-bar-wrap">
-    <div class="preloader-bar"></div>
+  <!-- ─── PRELOADER ──────────────────────────────────────────── -->
+  <div id="preloader" role="status" aria-label="Carregando...">
+    <div class="preloader-logo">Kimera<span>.</span></div>
+    <div class="preloader-bar-wrap">
+      <div class="preloader-bar"></div>
+    </div>
+    <div class="preloader-count">0%</div>
   </div>
-  <div class="preloader-count">0%</div>
-</div>
 
-<!-- ─── NAVIGATION ─────────────────────────────────────────── -->
-<header id="nav" role="banner">
-  <div class="nav-inner">
-    <a href="#hero" class="nav-logo" aria-label="Kimera Co.">Kimera<span>.</span></a>
+  <!-- ─── NAVIGATION ─────────────────────────────────────────── -->
+  <header id="nav" role="banner">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Kimera Co.">Kimera<span>.</span></a>
 
-    <nav class="nav-links" aria-label="Menu principal">
+      <nav class="nav-links" aria-label="Menu principal">
+        <a href="#value" class="nav-link">Serviços</a>
+        <a href="#metodo" class="nav-link">Método</a>
+        <a href="#planos" class="nav-link">Planos</a>
+        <a href="#portfolio" class="nav-link">Portfólio</a>
+        <a href="#depoimentos" class="nav-link">Clientes</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#cta-final" class="btn btn-primary btn-sm nav-cta">Pedir orçamento</a>
+      </nav>
+
+      <button class="nav-burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-drawer">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div id="nav-drawer" class="nav-drawer" aria-hidden="true">
       <a href="#value" class="nav-link">Serviços</a>
       <a href="#metodo" class="nav-link">Método</a>
       <a href="#planos" class="nav-link">Planos</a>
       <a href="#portfolio" class="nav-link">Portfólio</a>
       <a href="#depoimentos" class="nav-link">Clientes</a>
       <a href="#faq" class="nav-link">FAQ</a>
-      <a href="#cta-final" class="btn btn-primary btn-sm nav-cta">Pedir orçamento</a>
-    </nav>
+      <a href="#cta-final" class="btn btn-primary" style="margin-top:16px;justify-content:center;">Pedir orçamento</a>
+    </div>
+  </header>
 
-    <button class="nav-burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-drawer">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-
-  <!-- Mobile drawer -->
-  <div id="nav-drawer" class="nav-drawer" aria-hidden="true">
-    <a href="#value" class="nav-link">Serviços</a>
-    <a href="#metodo" class="nav-link">Método</a>
-    <a href="#planos" class="nav-link">Planos</a>
-    <a href="#portfolio" class="nav-link">Portfólio</a>
-    <a href="#depoimentos" class="nav-link">Clientes</a>
-    <a href="#faq" class="nav-link">FAQ</a>
-    <a href="#cta-final" class="btn btn-primary" style="margin-top:16px;justify-content:center;">Pedir orçamento</a>
-  </div>
-</header>
-
-<!-- ─── HERO ────────────────────────────────────────────────── -->
-<section id="hero" aria-labelledby="hero-heading">
-  <div class="hero-bg" aria-hidden="true">
-    <div class="hero-grid-lines"></div>
-    <div class="hero-radial"></div>
-  </div>
-
-  <div class="hero-inner">
-    <div class="hero-tag" aria-hidden="true">
-      <span class="hero-tag-dot"></span>
-      <span class="hero-tag-text">Presença Digital</span>
+  <!-- ─── HERO ────────────────────────────────────────────────── -->
+  <section id="hero" aria-labelledby="hero-heading">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid-lines"></div>
+      <div class="hero-radial"></div>
     </div>
 
-    <h1 class="hero-title" id="hero-heading">
-      <span class="line"><span class="line-inner">Sua empresa</span></span>
-      <span class="line"><span class="line-inner">no digital,</span></span>
-      <span class="line"><span class="line-inner accent-word">do jeito</span></span>
-      <span class="line"><span class="line-inner accent-word">certo.</span></span>
-    </h1>
+    <div class="hero-inner">
 
-    <p class="hero-sub">
-      Site profissional, identidade visual e e-mail corporativo — tudo integrado para sua marca transmitir confiança e vender mais desde o primeiro clique.
-    </p>
+      <h1 class="hero-title" id="hero-heading">
+        <span class="line"><span class="line-inner">Sua empresa</span></span>
+        <span class="line"><span class="line-inner">no digital,</span></span>
+        <span class="line"><span class="line-inner accent-word">do jeito</span></span>
+        <span class="line"><span class="line-inner accent-word">certo.</span></span>
+      </h1>
 
-    <div class="hero-actions">
-      <a href="#cta-final" class="btn btn-primary btn-lg btn-arrow">
-        Pedir orçamento <span class="arrow">→</span>
-      </a>
-      <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.843L0 24l6.34-1.498A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.79 9.79 0 01-5.006-1.374l-.36-.214-3.727.88.942-3.636-.234-.374A9.761 9.761 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/></svg>
-        Chamar no WhatsApp
-      </a>
-    </div>
-
-
-
-
-</section>
-
-<!-- ─── MARQUEE ─────────────────────────────────────────────── -->
-<div class="marquee-section" aria-hidden="true">
-  <div class="marquee-track">
-    <!-- Double for infinite loop -->
-    <div class="marquee-item">Site Institucional <span class="dot"></span></div>
-    <div class="marquee-item">Identidade Visual <span class="dot"></span></div>
-    <div class="marquee-item">Landing Page <span class="dot"></span></div>
-    <div class="marquee-item">E-mail Profissional <span class="dot"></span></div>
-    <div class="marquee-item">Alta Conversão <span class="dot"></span></div>
-    <div class="marquee-item">Design Premium <span class="dot"></span></div>
-    <div class="marquee-item">Entrega Rápida <span class="dot"></span></div>
-    <div class="marquee-item">Suporte Contínuo <span class="dot"></span></div>
-    <div class="marquee-item">Site Institucional <span class="dot"></span></div>
-    <div class="marquee-item">Identidade Visual <span class="dot"></span></div>
-    <div class="marquee-item">Landing Page <span class="dot"></span></div>
-    <div class="marquee-item">E-mail Profissional <span class="dot"></span></div>
-    <div class="marquee-item">Alta Conversão <span class="dot"></span></div>
-    <div class="marquee-item">Design Premium <span class="dot"></span></div>
-    <div class="marquee-item">Entrega Rápida <span class="dot"></span></div>
-    <div class="marquee-item">Suporte Contínuo <span class="dot"></span></div>
-  </div>
-</div>
-
-<!-- ─── VALUE PROPS ─────────────────────────────────────────── -->
-<section id="value" class="section-pad" aria-labelledby="value-heading">
-  <div class="container">
-    <div class="section-header">
-      <div class="label-badge">O que entregamos</div>
-      <h2 class="t-h2" id="value-heading">Tudo que sua marca<br>precisa pra crescer</h2>
-      <p class="section-subtitle">
-        Da primeira impressão ao fechamento de venda — construímos a presença digital completa para você.
+      <p class="hero-sub">
+        Site profissional, identidade visual e e-mail corporativo — tudo integrado para sua marca transmitir confiança e
+        vender mais desde o primeiro clique.
       </p>
+
+      <div class="hero-actions">
+        <a href="#cta-final" class="btn btn-primary btn-lg btn-arrow">
+          Pedir orçamento <span class="arrow">→</span>
+        </a>
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+            <path
+              d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.843L0 24l6.34-1.498A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.79 9.79 0 01-5.006-1.374l-.36-.214-3.727.88.942-3.636-.234-.374A9.761 9.761 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z" />
+          </svg>
+          Chamar no WhatsApp
+        </a>
+      </div>
     </div>
 
-    <div class="grid-3">
-      <article class="value-card">
-        <div class="value-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <h3 class="value-title">Site Institucional</h3>
-        <p class="value-desc">Até 5 páginas otimizadas para SEO, mobile-first e com design que transmite autoridade. Seu cliente chega e já confia.</p>
-      </article>
+  </section>
 
-      <article class="value-card">
-        <div class="value-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        </div>
-        <h3 class="value-title">Landing Page</h3>
-        <p class="value-desc">Página construída para converter visitantes em leads e vendas. Estrutura persuasiva, CTA estratégicos e velocidade máxima.</p>
-      </article>
-
-      <article class="value-card">
-        <div class="value-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-        </div>
-        <h3 class="value-title">Identidade Visual</h3>
-        <p class="value-desc">Logo, paleta de cores, tipografia e manual básico. Sua marca ganha consistência e fica reconhecível em qualquer canal.</p>
-      </article>
-
-      <article class="value-card">
-        <div class="value-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <h3 class="value-title">E-mail Profissional</h3>
-        <p class="value-desc">contato@suaempresa.com.br + assinatura de e-mail personalizada. Chega de usar Gmail ou Hotmail para falar com clientes.</p>
-      </article>
-
-      <article class="value-card">
-        <div class="value-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <h3 class="value-title">Otimização SEO</h3>
-        <p class="value-desc">Seu site indexado e rankeado corretamente no Google. Meta tags, velocidade e estrutura técnica no ponto.</p>
-      </article>
-
-      <article class="value-card">
-        <div class="value-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 19.07l-1.41-1.41M20 12h2M2 12H0M19.07 19.07l-1.41-1.41M4.93 4.93L3.52 3.52M12 20v2M12 2V0"/></svg>
-        </div>
-        <h3 class="value-title">Manutenção Contínua</h3>
-        <p class="value-desc">Planos mensais para manter seu site sempre atualizado, seguro e otimizado. Você foca no negócio, a gente cuida do digital.</p>
-      </article>
+  <!-- ─── MARQUEE ─────────────────────────────────────────────── -->
+  <div class="marquee-section" aria-hidden="true">
+    <div class="marquee-track">
+      <!-- Double for infinite loop -->
+      <div class="marquee-item">Site Institucional <span class="dot"></span></div>
+      <div class="marquee-item">Identidade Visual <span class="dot"></span></div>
+      <div class="marquee-item">Landing Page <span class="dot"></span></div>
+      <div class="marquee-item">E-mail Profissional <span class="dot"></span></div>
+      <div class="marquee-item">Alta Conversão <span class="dot"></span></div>
+      <div class="marquee-item">Design Premium <span class="dot"></span></div>
+      <div class="marquee-item">Entrega Rápida <span class="dot"></span></div>
+      <div class="marquee-item">Suporte Contínuo <span class="dot"></span></div>
+      <div class="marquee-item">Site Institucional <span class="dot"></span></div>
+      <div class="marquee-item">Identidade Visual <span class="dot"></span></div>
+      <div class="marquee-item">Landing Page <span class="dot"></span></div>
+      <div class="marquee-item">E-mail Profissional <span class="dot"></span></div>
+      <div class="marquee-item">Alta Conversão <span class="dot"></span></div>
+      <div class="marquee-item">Design Premium <span class="dot"></span></div>
+      <div class="marquee-item">Entrega Rápida <span class="dot"></span></div>
+      <div class="marquee-item">Suporte Contínuo <span class="dot"></span></div>
     </div>
   </div>
-</section>
 
-<!-- ─── MÉTODO KIMERA ────────────────────────────────────────── -->
-<section id="metodo" class="section-pad" aria-labelledby="metodo-heading">
-  <div class="container">
-    <div class="section-header">
-      <div class="label-badge">Como funciona</div>
-      <h2 class="t-h2" id="metodo-heading">Método Kimera</h2>
-      <p class="section-subtitle">Um processo claro, colaborativo e focado em resultado. Do briefing ao ar em poucas semanas.</p>
-    </div>
-
-    <div class="metodo-wrapper">
-      <!-- Steps -->
-      <div class="metodo-steps" role="list">
-        <div class="metodo-step" role="listitem" tabindex="0">
-          <div class="metodo-step-bar" aria-hidden="true"></div>
-          <div class="metodo-step-num">01</div>
-          <h3 class="metodo-step-title">Diagnóstico</h3>
-          <p class="metodo-step-desc">Entendemos seu negócio, seus concorrentes e o que sua audiência espera ver. Base para tudo.</p>
-        </div>
-        <div class="metodo-step" role="listitem" tabindex="0">
-          <div class="metodo-step-bar" aria-hidden="true"></div>
-          <div class="metodo-step-num">02</div>
-          <h3 class="metodo-step-title">Estratégia</h3>
-          <p class="metodo-step-desc">Definimos a arquitetura, o tom de voz, os CTAs e a jornada ideal do visitante até a conversão.</p>
-        </div>
-        <div class="metodo-step" role="listitem" tabindex="0">
-          <div class="metodo-step-bar" aria-hidden="true"></div>
-          <div class="metodo-step-num">03</div>
-          <h3 class="metodo-step-title">Design</h3>
-          <p class="metodo-step-desc">Criamos a identidade visual e o layout no Figma. Você aprova antes de uma linha de código.</p>
-        </div>
-        <div class="metodo-step" role="listitem" tabindex="0">
-          <div class="metodo-step-bar" aria-hidden="true"></div>
-          <div class="metodo-step-num">04</div>
-          <h3 class="metodo-step-title">Desenvolvimento</h3>
-          <p class="metodo-step-desc">Código limpo, responsivo e otimizado. Site rápido, acessível e pronto para converter.</p>
-        </div>
-        <div class="metodo-step" role="listitem" tabindex="0">
-          <div class="metodo-step-bar" aria-hidden="true"></div>
-          <div class="metodo-step-num">05</div>
-          <h3 class="metodo-step-title">Entrega & Go Live</h3>
-          <p class="metodo-step-desc">Publicamos, configuramos o e-mail profissional e entregamos com treinamento incluso.</p>
-        </div>
-      </div>
-
-      <!-- Visual preview (sticky on desktop) -->
-      <div class="metodo-visual" aria-hidden="true">
-        <div class="metodo-visual-accent"></div>
-        <div class="metodo-visual-inner">
-          <div class="metodo-step-icon-lg">🔍</div>
-          <div class="metodo-step-title-lg">Diagnóstico</div>
-          <div class="metodo-step-sub-lg">Entendemos seu negócio, seu mercado e seus objetivos em profundidade.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── PLANOS ───────────────────────────────────────────────── -->
-<section id="planos" class="section-pad" aria-labelledby="planos-heading">
-  <div class="container">
-    <div class="section-header" style="text-align:center;max-width:600px;margin:0 auto var(--sp-80);">
-      <div class="label-badge">Investimento</div>
-      <h2 class="t-h2" id="planos-heading">Planos para toda ambição</h2>
-      <p class="section-subtitle" style="margin:0 auto;">
-        Escolha o plano ideal para o momento da sua empresa. Upgrade a qualquer momento.
-      </p>
-    </div>
-
-    <div class="pricing-grid">
-      <!-- Essencial -->
-      <div class="pricing-card" role="article">
-        <div class="pricing-name">Essencial</div>
-        <div class="pricing-price"><span class="currency">R$</span>1.297</div>
-        <div class="pricing-period">pagamento único</div>
-        <div class="pricing-divider"></div>
-        <ul class="pricing-features">
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Site institucional (até 3 páginas)
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Design responsivo mobile
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            E-mail profissional (1 conta)
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            SEO básico on-page
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Entrega em até 15 dias
-          </li>
-        </ul>
-        <a href="#cta-final" class="btn btn-secondary pricing-btn">Começar →</a>
-      </div>
-
-      <!-- Profissional -->
-      <div class="pricing-card" role="article">
-        <div class="pricing-name">Profissional</div>
-        <div class="pricing-price"><span class="currency">R$</span>2.497</div>
-        <div class="pricing-period">pagamento único</div>
-        <div class="pricing-divider"></div>
-        <ul class="pricing-features">
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Site institucional (até 5 páginas)
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Logo + identidade visual básica
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            E-mail profissional (3 contas)
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Google Analytics configurado
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Integração WhatsApp
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Entrega em até 21 dias
-          </li>
-        </ul>
-        <a href="#cta-final" class="btn btn-secondary pricing-btn">Começar →</a>
-      </div>
-
-      <!-- Conversão (DESTAQUE) -->
-      <div class="pricing-card featured" role="article" aria-label="Plano recomendado">
-        <div class="pricing-badge">⭐ Mais popular</div>
-        <div class="pricing-name">Conversão</div>
-        <div class="pricing-price"><span class="currency">R$</span>2.997</div>
-        <div class="pricing-period">pagamento único</div>
-        <div class="pricing-divider"></div>
-        <ul class="pricing-features">
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Landing page de alta conversão
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Copywriting estratégico incluso
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Pixel & Google Tag Manager
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Integração CRM / formulários
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            A/B test estruturado
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Identidade visual completa
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Entrega em até 14 dias
-          </li>
-        </ul>
-        <a href="#cta-final" class="btn btn-primary pricing-btn">Quero este →</a>
-      </div>
-
-      <!-- Premium -->
-      <div class="pricing-card" role="article">
-        <div class="pricing-name">Premium</div>
-        <div class="pricing-price"><span class="currency">R$</span>4.997</div>
-        <div class="pricing-period">pagamento único</div>
-        <div class="pricing-divider"></div>
-        <ul class="pricing-features">
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Tudo do plano Conversão
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Site institucional completo
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Identidade visual premium + manual
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Dashboard analytics personalizado
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Suporte prioritário 3 meses
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-icon">✓</span>
-            Entrega em até 30 dias
-          </li>
-        </ul>
-        <a href="#cta-final" class="btn btn-secondary pricing-btn">Falar com a equipe →</a>
-      </div>
-    </div>
-
-    <!-- Recorrência -->
-    <div class="pricing-recurrence reveal-up">
-      <p class="pricing-recurrence-title">Manutenção mensal — Site sempre atualizado e seguro</p>
-      <div class="pricing-recurrence-price">a partir de R$ 197<small style="font-size:1rem;font-weight:400;color:var(--c-white-45)">/mês</small></div>
-      <p style="color:var(--c-white-45);font-size:var(--t-sm);margin-top:var(--sp-12)">Atualizações, backups, segurança e suporte mensal incluídos.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── PORTFOLIO ────────────────────────────────────────────── -->
-<section id="portfolio" class="section-pad" aria-labelledby="portfolio-heading">
-  <div class="container">
-    <div class="section-header" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:var(--sp-48);">
-      <div>
-        <div class="label-badge">Portfólio</div>
-        <h2 class="t-h2" id="portfolio-heading" style="margin-top:var(--sp-16)">Projetos que provam</h2>
-      </div>
-      <a href="#cta-final" class="btn btn-ghost btn-arrow">Ver todos <span class="arrow">→</span></a>
-    </div>
-
-    <div class="portfolio-grid">
-      <!-- Card 1 - large -->
-      <div class="portfolio-card" tabindex="0" aria-label="Projeto: LexJur Advocacia">
-        <div class="portfolio-card-bg p-grad-1">
-          <div class="port-svg">
-            <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="100" cy="100" r="80" stroke="rgba(255,32,32,0.4)" stroke-width="1"/>
-              <circle cx="100" cy="100" r="55" stroke="rgba(255,32,32,0.3)" stroke-width="1"/>
-              <circle cx="100" cy="100" r="30" stroke="rgba(255,32,32,0.2)" stroke-width="1"/>
-              <line x1="20" y1="100" x2="180" y2="100" stroke="rgba(255,32,32,0.2)" stroke-width="1"/>
-              <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(255,32,32,0.2)" stroke-width="1"/>
-            </svg>
-          </div>
-        </div>
-        <div class="portfolio-card-overlay"></div>
-        <div class="portfolio-card-info">
-          <div class="portfolio-card-tag">Site Institucional</div>
-          <div class="portfolio-card-title">LexJur Advocacia</div>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="portfolio-card" tabindex="0" aria-label="Projeto: Verde Nutri">
-        <div class="portfolio-card-bg p-grad-2">
-          <div class="port-svg">
-            <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-              <rect x="20" y="20" width="80" height="80" stroke="rgba(30,211,111,0.4)" stroke-width="1"/>
-              <rect x="35" y="35" width="50" height="50" stroke="rgba(30,211,111,0.3)" stroke-width="1"/>
-              <rect x="50" y="50" width="20" height="20" fill="rgba(30,211,111,0.2)"/>
-            </svg>
-          </div>
-        </div>
-        <div class="portfolio-card-overlay"></div>
-        <div class="portfolio-card-info">
-          <div class="portfolio-card-tag">Identidade + Site</div>
-          <div class="portfolio-card-title">Verde Nutri</div>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="portfolio-card" tabindex="0" aria-label="Projeto: TechFix Soluções">
-        <div class="portfolio-card-bg p-grad-3">
-          <div class="port-svg">
-            <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-              <polygon points="60,10 110,90 10,90" stroke="rgba(77,163,255,0.4)" stroke-width="1" fill="none"/>
-              <polygon points="60,30 90,80 30,80" stroke="rgba(77,163,255,0.3)" stroke-width="1" fill="none"/>
-              <circle cx="60" cy="65" r="10" fill="rgba(77,163,255,0.2)"/>
-            </svg>
-          </div>
-        </div>
-        <div class="portfolio-card-overlay"></div>
-        <div class="portfolio-card-info">
-          <div class="portfolio-card-tag">Landing Page</div>
-          <div class="portfolio-card-title">TechFix Soluções</div>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="portfolio-card" tabindex="0" aria-label="Projeto: Café Aura">
-        <div class="portfolio-card-bg p-grad-4">
-          <div class="port-svg">
-            <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-              <circle cx="60" cy="60" r="50" stroke="rgba(249,171,0,0.4)" stroke-width="1"/>
-              <circle cx="60" cy="60" r="35" stroke="rgba(249,171,0,0.3)" stroke-width="1"/>
-              <circle cx="60" cy="60" r="20" fill="rgba(249,171,0,0.15)"/>
-            </svg>
-          </div>
-        </div>
-        <div class="portfolio-card-overlay"></div>
-        <div class="portfolio-card-info">
-          <div class="portfolio-card-tag">Branding + E-mail</div>
-          <div class="portfolio-card-title">Café Aura</div>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="portfolio-card" tabindex="0" aria-label="Projeto: Studio Forma">
-        <div class="portfolio-card-bg p-grad-5">
-          <div class="port-svg">
-            <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-              <rect x="15" y="50" width="90" height="20" stroke="rgba(199,146,234,0.4)" stroke-width="1" transform="rotate(45 60 60)"/>
-              <rect x="15" y="50" width="90" height="20" stroke="rgba(199,146,234,0.3)" stroke-width="1" transform="rotate(-45 60 60)"/>
-            </svg>
-          </div>
-        </div>
-        <div class="portfolio-card-overlay"></div>
-        <div class="portfolio-card-info">
-          <div class="portfolio-card-tag">Site + Identidade</div>
-          <div class="portfolio-card-title">Studio Forma</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── DEPOIMENTOS ──────────────────────────────────────────── -->
-<section id="depoimentos" class="section-pad" aria-labelledby="depoimentos-heading">
-  <div class="container">
-    <div class="section-header" style="text-align:center;max-width:550px;margin:0 auto var(--sp-64);">
-      <div class="label-badge">Prova social</div>
-      <h2 class="t-h2" id="depoimentos-heading">O que nossos clientes dizem</h2>
-    </div>
-
-    <!-- Numbers -->
-    <div class="social-numbers" role="list">
-      <div class="social-num-card" role="listitem">
-        <div class="social-num-value"><span id="counter-1">0</span></div>
-        <div class="social-num-label">Projetos entregues</div>
-      </div>
-      <div class="social-num-card" role="listitem">
-        <div class="social-num-value"><span id="counter-2">0</span></div>
-        <div class="social-num-label">Clientes satisfeitos</div>
-      </div>
-      <div class="social-num-card" role="listitem">
-        <div class="social-num-value"><span id="counter-3">0</span></div>
-        <div class="social-num-label">Mais conversão média</div>
-      </div>
-      <div class="social-num-card" role="listitem">
-        <div class="social-num-value"><span id="counter-4">0</span></div>
-        <div class="social-num-label">Suporte disponível (horas)</div>
-      </div>
-    </div>
-
-    <!-- Testimonial cards -->
-    <div class="testimonials-grid">
-      <article class="testimonial-card">
-        <div class="testimonial-quote-icon" aria-hidden="true">"</div>
-        <p class="testimonial-text">
-          Em menos de 3 semanas tinha meu site no ar, com logo nova e e-mail profissional. Os clientes passaram a me ver com outros olhos. Minha taxa de resposta de orçamentos dobrou.
+  <!-- ─── VALUE PROPS ─────────────────────────────────────────── -->
+  <section id="value" class="section-pad" aria-labelledby="value-heading">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="t-h2" id="value-heading">Tudo que sua marca<br>precisa pra crescer</h2>
+        <p class="section-subtitle">
+          Da primeira impressão ao fechamento de venda — construímos a presença digital completa para você.
         </p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar" aria-hidden="true">MG</div>
-          <div>
-            <div class="testimonial-name">Mariana Gomes</div>
-            <div class="testimonial-role">Arquiteta — Studio MG</div>
-          </div>
-        </div>
-      </article>
+      </div>
 
-      <article class="testimonial-card">
-        <div class="testimonial-quote-icon" aria-hidden="true">"</div>
-        <p class="testimonial-text">
-          A landing page que a Kimera criou pra mim converteu 4x mais do que meu site anterior. O investimento se pagou na primeira semana com novos clientes fechados.
-        </p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar" aria-hidden="true">RL</div>
-          <div>
-            <div class="testimonial-name">Rafael Lima</div>
-            <div class="testimonial-role">Coach Financeiro — RL Mentoria</div>
+      <div class="grid-3">
+        <article class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
           </div>
-        </div>
-      </article>
+          <h3 class="value-title">Site Institucional</h3>
+          <p class="value-desc">Até 5 páginas otimizadas para SEO, mobile-first e com design que transmite autoridade.
+            Seu cliente chega e já confia.</p>
+        </article>
 
-      <article class="testimonial-card">
-        <div class="testimonial-quote-icon" aria-hidden="true">"</div>
-        <p class="testimonial-text">
-          Profissionalismo de ponta a ponta. Design impecável, código rápido e suporte humano de verdade. Recomendo sem hesitar para qualquer empresa que queira crescer online.
-        </p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar" aria-hidden="true">CS</div>
-          <div>
-            <div class="testimonial-name">Camila Santos</div>
-            <div class="testimonial-role">Diretora — Nutriclin Clínica</div>
+        <article class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
           </div>
-        </div>
-      </article>
+          <h3 class="value-title">Landing Page</h3>
+          <p class="value-desc">Página construída para converter visitantes em leads e vendas. Estrutura persuasiva, CTA
+            estratégicos e velocidade máxima.</p>
+        </article>
+
+        <article class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+              <line x1="9" y1="9" x2="9.01" y2="9" />
+              <line x1="15" y1="9" x2="15.01" y2="9" />
+            </svg>
+          </div>
+          <h3 class="value-title">Identidade Visual</h3>
+          <p class="value-desc">Logo, paleta de cores, tipografia e manual básico. Sua marca ganha consistência e fica
+            reconhecível em qualquer canal.</p>
+        </article>
+
+        <article class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </div>
+          <h3 class="value-title">E-mail Profissional</h3>
+          <p class="value-desc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+              data-cfemail="c6a5a9a8b2a7b2a986b5b3a7a3abb6b4a3b5a7e8a5a9abe8a4b4">contato@kimeraco.com.br</a> +
+            assinatura de e-mail personalizada. Chega de usar Gmail ou Hotmail para falar com clientes.</p>
+        </article>
+
+        <article class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+          </div>
+          <h3 class="value-title">Otimização SEO</h3>
+          <p class="value-desc">Seu site indexado e rankeado corretamente no Google. Meta tags, velocidade e estrutura
+            técnica no ponto.</p>
+        </article>
+
+        <article class="value-card">
+          <div class="value-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.07 4.93l-1.41 1.41M4.93 19.07l-1.41-1.41M20 12h2M2 12H0M19.07 19.07l-1.41-1.41M4.93 4.93L3.52 3.52M12 20v2M12 2V0" />
+            </svg>
+          </div>
+          <h3 class="value-title">Manutenção Contínua</h3>
+          <p class="value-desc">Planos mensais para manter seu site sempre atualizado, seguro e otimizado. Você foca no
+            negócio, a gente cuida do digital.</p>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- ─── MÉTODO KIMERA ────────────────────────────────────────── -->
+  <section id="metodo" class="section-pad" aria-labelledby="metodo-heading">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="t-h2" id="metodo-heading">Método Kimera</h2>
+        <p class="section-subtitle">Um processo claro, colaborativo e focado em resultado. Do briefing ao ar em poucas
+          semanas.</p>
+      </div>
+
+      <div class="metodo-wrapper">
+        <!-- Steps -->
+        <div class="metodo-steps" role="list">
+          <div class="metodo-step" role="listitem" tabindex="0">
+            <div class="metodo-step-bar" aria-hidden="true"></div>
+            <div class="metodo-step-num">01</div>
+            <h3 class="metodo-step-title">Diagnóstico</h3>
+            <p class="metodo-step-desc">Entendemos seu negócio, seus concorrentes e o que sua audiência espera ver. Base
+              para tudo.</p>
+          </div>
+          <div class="metodo-step" role="listitem" tabindex="0">
+            <div class="metodo-step-bar" aria-hidden="true"></div>
+            <div class="metodo-step-num">02</div>
+            <h3 class="metodo-step-title">Estratégia</h3>
+            <p class="metodo-step-desc">Definimos a arquitetura, o tom de voz, os CTAs e a jornada ideal do visitante
+              até a conversão.</p>
+          </div>
+          <div class="metodo-step" role="listitem" tabindex="0">
+            <div class="metodo-step-bar" aria-hidden="true"></div>
+            <div class="metodo-step-num">03</div>
+            <h3 class="metodo-step-title">Design</h3>
+            <p class="metodo-step-desc">Criamos a identidade visual e o layout no Figma. Você aprova antes de uma linha
+              de código.</p>
+          </div>
+          <div class="metodo-step" role="listitem" tabindex="0">
+            <div class="metodo-step-bar" aria-hidden="true"></div>
+            <div class="metodo-step-num">04</div>
+            <h3 class="metodo-step-title">Desenvolvimento</h3>
+            <p class="metodo-step-desc">Código limpo, responsivo e otimizado. Site rápido, acessível e pronto para
+              converter.</p>
+          </div>
+          <div class="metodo-step" role="listitem" tabindex="0">
+            <div class="metodo-step-bar" aria-hidden="true"></div>
+            <div class="metodo-step-num">05</div>
+            <h3 class="metodo-step-title">Entrega & Go Live</h3>
+            <p class="metodo-step-desc">Publicamos, configuramos o e-mail profissional e entregamos com treinamento
+              incluso.</p>
+          </div>
+        </div>
+
+        <!-- Visual preview (sticky on desktop) -->
+        <div class="metodo-visual" aria-hidden="true">
+          <div class="metodo-visual-accent"></div>
+          <div class="metodo-visual-inner">
+            <div class="metodo-step-icon-lg">🔍</div>
+            <div class="metodo-step-title-lg">Diagnóstico</div>
+            <div class="metodo-step-sub-lg">Entendemos seu negócio, seu mercado e seus objetivos em profundidade.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PLANOS ───────────────────────────────────────────────── -->
+  <section id="planos" class="section-pad" aria-labelledby="planos-heading">
+    <div class="container">
+      <div class="section-header" style="text-align:center;max-width:600px;margin:0 auto var(--sp-80);">
+        <h2 class="t-h2" id="planos-heading">Planos para toda ambição</h2>
+        <p class="section-subtitle" style="margin:0 auto;">
+          Escolha o plano ideal para o momento da sua empresa. Upgrade a qualquer momento.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Essencial -->
+        <div class="pricing-card" role="article">
+          <div class="pricing-name">Essencial</div>
+          <div class="pricing-price"><span class="currency">R$</span>1.297</div>
+          <div class="pricing-period">pagamento único</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Site institucional (até 3 páginas)
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Design responsivo mobile
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              E-mail profissional (1 conta)
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              SEO básico on-page
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Entrega em até 15 dias
+            </li>
+          </ul>
+          <a href="#cta-final" class="btn btn-secondary pricing-btn">Começar →</a>
+        </div>
+
+        <!-- Profissional -->
+        <div class="pricing-card" role="article">
+          <div class="pricing-name">Profissional</div>
+          <div class="pricing-price"><span class="currency">R$</span>2.497</div>
+          <div class="pricing-period">pagamento único</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Site institucional (até 5 páginas)
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Logo + identidade visual básica
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              E-mail profissional (3 contas)
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Google Analytics configurado
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Integração WhatsApp
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Entrega em até 21 dias
+            </li>
+          </ul>
+          <a href="#cta-final" class="btn btn-secondary pricing-btn">Começar →</a>
+        </div>
+
+        <!-- Conversão (DESTAQUE) -->
+        <div class="pricing-card featured" role="article" aria-label="Plano recomendado">
+          <div class="pricing-badge">⭐ Mais popular</div>
+          <div class="pricing-name">Conversão</div>
+          <div class="pricing-price"><span class="currency">R$</span>2.997</div>
+          <div class="pricing-period">pagamento único</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Landing page de alta conversão
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Copywriting estratégico incluso
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Pixel & Google Tag Manager
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Integração CRM / formulários
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              A/B test estruturado
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Identidade visual completa
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Entrega em até 14 dias
+            </li>
+          </ul>
+          <a href="#cta-final" class="btn btn-primary pricing-btn">Quero este →</a>
+        </div>
+
+        <!-- Premium -->
+        <div class="pricing-card" role="article">
+          <div class="pricing-name">Premium</div>
+          <div class="pricing-price"><span class="currency">R$</span>4.997</div>
+          <div class="pricing-period">pagamento único</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Tudo do plano Conversão
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Site institucional completo
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Identidade visual premium + manual
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Dashboard analytics personalizado
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Suporte prioritário 3 meses
+            </li>
+            <li class="pricing-feature">
+              <span class="pricing-feature-icon">✓</span>
+              Entrega em até 30 dias
+            </li>
+          </ul>
+          <a href="#cta-final" class="btn btn-secondary pricing-btn">Falar com a equipe →</a>
+        </div>
+      </div>
+
+      <!-- Recorrência -->
+      <div class="pricing-recurrence reveal-up">
+        <p class="pricing-recurrence-title">Manutenção mensal — Site sempre atualizado e seguro</p>
+        <div class="pricing-recurrence-price">a partir de R$ 197<small
+            style="font-size:1rem;font-weight:400;color:var(--c-white-45)">/mês</small></div>
+        <p style="color:var(--c-white-45);font-size:var(--t-sm);margin-top:var(--sp-12)">Atualizações, backups,
+          segurança e suporte mensal incluídos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PORTFOLIO ────────────────────────────────────────────── -->
+  <section id="portfolio" class="section-pad" aria-labelledby="portfolio-heading">
+    <div class="container">
+      <div class="section-header"
+        style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:var(--sp-48);">
+        <div>
+          <h2 class="t-h2" id="portfolio-heading" style="margin-top:var(--sp-16)">Projetos que provam</h2>
+        </div>
+        <a href="#cta-final" class="btn btn-ghost btn-arrow">Ver todos <span class="arrow">→</span></a>
+      </div>
+
+      <div class="portfolio-grid">
+        <!-- Card 1 - large -->
+        <div class="portfolio-card" tabindex="0" aria-label="Projeto: Miquim Freios">
+          <div class="portfolio-card-bg p-img" style="background-image:url('./assets/img/miquimfreios.png');"></div>
+          <div class="portfolio-card-overlay"></div>
+          <div class="portfolio-card-info">
+            <div class="portfolio-card-tag">Landing Page</div>
+            <div class="portfolio-card-title">Miquim Freios</div>
+          </div>
+        </div>
+
+        <!-- Card 2 - image -->
+        <div class="portfolio-card" tabindex="0" aria-label="Projeto: O Pereirão">
+          <div class="portfolio-card-bg p-img" style="background-image:url('./assets/img/opereirao.png');"></div>
+          <div class="portfolio-card-overlay"></div>
+          <div class="portfolio-card-info">
+            <div class="portfolio-card-tag">Landing Page</div>
+            <div class="portfolio-card-title">O Pereirão</div>
+          </div>
+        </div>
+
+        <!-- Card 3 - image -->
+        <div class="portfolio-card" tabindex="0" aria-label="Projeto: New Tech Móveis">
+          <div class="portfolio-card-bg p-img" style="background-image:url('./assets/img/new.png');"></div>
+          <div class="portfolio-card-overlay"></div>
+          <div class="portfolio-card-info">
+            <div class="portfolio-card-tag">Landing Page</div>
+            <div class="portfolio-card-title">New Tech Móveis</div>
+          </div>
+        </div>
+
+        <!-- Card 4 - image -->
+        <div class="portfolio-card" tabindex="0" aria-label="Projeto: Café Aura">
+          <div class="portfolio-card-bg p-img" style="background-image:url('./assets/img/cafeaura.png');"></div>
+          <div class="portfolio-card-overlay"></div>
+          <div class="portfolio-card-info">
+            <div class="portfolio-card-tag">Branding + E-mail</div>
+            <div class="portfolio-card-title">Café Aura</div>
+          </div>
+        </div>
+
+        <!-- Card 5 - image -->
+        <div class="portfolio-card" tabindex="0" aria-label="Projeto: Studio Forma">
+          <div class="portfolio-card-bg p-img" style="background-image:url('./assets/img/studioforma.png');"></div>
+          <div class="portfolio-card-overlay"></div>
+          <div class="portfolio-card-info">
+            <div class="portfolio-card-tag">Site + Identidade</div>
+            <div class="portfolio-card-title">Studio Forma</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── DEPOIMENTOS ──────────────────────────────────────────── -->
+  <section id="depoimentos" class="section-pad" aria-labelledby="depoimentos-heading">
+    <div class="container">
+      <div class="section-header" style="text-align:center;max-width:550px;margin:0 auto var(--sp-64);">
+        <h2 class="t-h2" id="depoimentos-heading">O que nossos clientes dizem</h2>
+      </div>
+
+      <!-- Numbers -->
+      <div class="social-numbers" role="list">
+        <div class="social-num-card" role="listitem">
+          <div class="social-num-value"><span id="counter-1">0</span></div>
+          <div class="social-num-label">Projetos entregues</div>
+        </div>
+        <div class="social-num-card" role="listitem">
+          <div class="social-num-value"><span id="counter-2">0</span></div>
+          <div class="social-num-label">Clientes satisfeitos</div>
+        </div>
+        <div class="social-num-card" role="listitem">
+          <div class="social-num-value"><span id="counter-3">0</span></div>
+          <div class="social-num-label">Mais conversão média</div>
+        </div>
+        <div class="social-num-card" role="listitem">
+          <div class="social-num-value"><span id="counter-4">0</span></div>
+          <div class="social-num-label">Suporte disponível (horas)</div>
+        </div>
+      </div>
+
+      <!-- Testimonial cards -->
+      <div class="testimonials-grid">
+        <article class="testimonial-card">
+          <div class="testimonial-quote-icon" aria-hidden="true">"</div>
+          <p class="testimonial-text">
+            Em menos de 3 semanas tinha meu site no ar, com logo nova e e-mail profissional. Os clientes passaram a me
+            ver com outros olhos. Minha taxa de resposta de orçamentos dobrou.
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">MG</div>
+            <div>
+              <div class="testimonial-name">Mariana Gomes</div>
+              <div class="testimonial-role">Arquiteta — Studio MG</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="testimonial-quote-icon" aria-hidden="true">"</div>
+          <p class="testimonial-text">
+            A landing page que a Kimera criou pra mim converteu 4x mais do que meu site anterior. O investimento se
+            pagou na primeira semana com novos clientes fechados.
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">RL</div>
+            <div>
+              <div class="testimonial-name">Rafael Lima</div>
+              <div class="testimonial-role">Coach Financeiro — RL Mentoria</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="testimonial-quote-icon" aria-hidden="true">"</div>
+          <p class="testimonial-text">
+            Profissionalismo de ponta a ponta. Design impecável, código rápido e suporte humano de verdade. Recomendo
+            sem hesitar para qualquer empresa que queira crescer online.
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">CS</div>
+            <div>
+              <div class="testimonial-name">Camila Santos</div>
+              <div class="testimonial-role">Diretora — Nutriclin Clínica</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
 <!-- ─── FAQ ──────────────────────────────────────────────────── -->
 <section id="faq" class="section-pad" aria-labelledby="faq-heading">
   <div class="container">
     <div class="section-header" style="max-width:700px;">
-      <div class="label-badge">FAQ</div>
       <h2 class="t-h2" id="faq-heading">Perguntas frequentes</h2>
     </div>
 
-    <div class="faq-list" style="max-width:800px;" role="list">
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-question-text">Qual o prazo de entrega?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" aria-hidden="true">
-          <div class="faq-answer-inner">
-            Depende do plano escolhido: o Essencial tem prazo de 15 dias, o Profissional 21 dias, o Conversão 14 dias e o Premium até 30 dias. Esses prazos são contados após a aprovação do briefing e o pagamento inicial.
+    <div class="faq-layout">
+      <!-- Coluna esquerda (FAQ) -->
+      <div class="faq-col">
+        <div class="faq-list" role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">Qual o prazo de entrega?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                Depende do plano escolhido: o Essencial tem prazo de 15 dias, o Profissional 21 dias, o Conversão 14 dias
+                e o Premium até 30 dias. Esses prazos são contados após a aprovação do briefing e o pagamento inicial.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">Preciso ter textos e fotos prontos?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                Não necessariamente. Ajudamos na estrutura de copy nos planos Conversão e Premium. Fotos podem ser suas ou
+                podemos usar banco de imagens premium. Quanto mais material você tiver, mais personalizado e único fica o
+                resultado.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">O site fica hospedado onde?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                Geralmente utilizamos serviços confiáveis como Vercel, Hostinger ou similar, dependendo do projeto. O
+                domínio e a hospedagem são de sua propriedade — não ficamos como intermediários. Orientamos você a manter
+                o controle total.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">Posso atualizar o site depois?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                Sim. Temos planos de manutenção mensal a partir de R$ 197/mês que incluem atualizações de conteúdo,
+                backups automáticos e suporte técnico. Também entregamos o acesso completo para você gerenciar sozinho,
+                se preferir.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">Vocês fazem e-commerce / loja virtual?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                Sim, mas lojas virtuais têm um escopo diferente e orçamento personalizado. Entre em contato para
+                conversarmos sobre seu projeto. Trabalhamos com Shopify, WooCommerce e soluções customizadas conforme a
+                necessidade.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-question-text">Como é o processo de pagamento?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" aria-hidden="true">
+              <div class="faq-answer-inner">
+                50% de entrada para início do projeto e 50% na entrega final. Aceitamos Pix, transferência bancária e
+                cartão de crédito em até 3x sem juros. Projetos maiores podem ter condições especiais — é só perguntar.
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-question-text">Preciso ter textos e fotos prontos?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" aria-hidden="true">
-          <div class="faq-answer-inner">
-            Não necessariamente. Ajudamos na estrutura de copy nos planos Conversão e Premium. Fotos podem ser suas ou podemos usar banco de imagens premium. Quanto mais material você tiver, mais personalizado e único fica o resultado.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-question-text">O site fica hospedado onde?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" aria-hidden="true">
-          <div class="faq-answer-inner">
-            Geralmente utilizamos serviços confiáveis como Vercel, Hostinger ou similar, dependendo do projeto. O domínio e a hospedagem são de sua propriedade — não ficamos como intermediários. Orientamos você a manter o controle total.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-question-text">Posso atualizar o site depois?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" aria-hidden="true">
-          <div class="faq-answer-inner">
-            Sim. Temos planos de manutenção mensal a partir de R$ 197/mês que incluem atualizações de conteúdo, backups automáticos e suporte técnico. Também entregamos o acesso completo para você gerenciar sozinho, se preferir.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-question-text">Vocês fazem e-commerce / loja virtual?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" aria-hidden="true">
-          <div class="faq-answer-inner">
-            Sim, mas lojas virtuais têm um escopo diferente e orçamento personalizado. Entre em contato para conversarmos sobre seu projeto. Trabalhamos com Shopify, WooCommerce e soluções customizadas conforme a necessidade.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item" role="listitem">
-        <button class="faq-question" aria-expanded="false">
-          <span class="faq-question-text">Como é o processo de pagamento?</span>
-          <span class="faq-icon" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-answer" aria-hidden="true">
-          <div class="faq-answer-inner">
-            50% de entrada para início do projeto e 50% na entrega final. Aceitamos Pix, transferência bancária e cartão de crédito em até 3x sem juros. Projetos maiores podem ter condições especiais — é só perguntar.
-          </div>
-        </div>
-      </div>
+      <!-- Coluna direita (Imagem funcionários) -->
+      <aside class="faq-media" aria-hidden="true">
+        <img src="" alt="Equipe Kimera Co." loading="lazy" decoding="async">
+      </aside>
     </div>
   </div>
 </section>
 
-<!-- ─── CTA FINAL ────────────────────────────────────────────── -->
-<section id="cta-final" class="section-pad" aria-labelledby="cta-heading">
-  <div class="cta-bg" aria-hidden="true"></div>
-  <div class="cta-grid-lines" aria-hidden="true"></div>
-  <div class="container">
-    <div class="cta-inner">
-      <div class="label-badge" style="margin:0 auto var(--sp-32);">Vamos começar?</div>
-      <h2 class="cta-title" id="cta-heading">
-        Sua empresa merece<br>presença digital <span class="accent">de verdade.</span>
-      </h2>
-      <p class="cta-sub">
-        Nada de templates genéricos. Nada de amadorismo. Sua marca no digital do jeito que ela merece — profissional, rápida e pronta para converter.
-      </p>
-      <div class="cta-actions">
-        <a href="mailto:oi@kimeracodigital.com.br" class="btn btn-primary btn-lg">
-          Pedir orçamento agora
-        </a>
-        <a href="https://wa.me/5511999999999?text=Oi%2C%20quero%20saber%20mais%20sobre%20os%20planos%20da%20Kimera%20Co." target="_blank" rel="noopener" class="cta-wpp">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.843L0 24l6.34-1.498A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.79 9.79 0 01-5.006-1.374l-.36-.214-3.727.88.942-3.636-.234-.374A9.761 9.761 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/></svg>
-          Chamar no WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── FOOTER ───────────────────────────────────────────────── -->
-<footer role="contentinfo">
-  <div class="container">
-    <div class="footer-grid">
-      <!-- Brand -->
-      <div class="footer-brand">
-        <a href="#hero" class="nav-logo">Kimera<span>.</span></a>
-        <p>Presença digital completa para empresas que querem crescer de verdade. Site, identidade e e-mail profissional — tudo em um só lugar.</p>
-        <div class="footer-socials">
-          <a href="#" class="footer-social" aria-label="Instagram">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+  <!-- ─── CTA FINAL ────────────────────────────────────────────── -->
+  <section id="cta-final" class="section-pad" aria-labelledby="cta-heading">
+    <div class="cta-bg" aria-hidden="true"></div>
+    <div class="cta-grid-lines" aria-hidden="true"></div>
+    <div class="container">
+      <div class="cta-inner">
+        <h2 class="cta-title" id="cta-heading">
+          Sua empresa merece<br>presença digital <span class="accent">de verdade.</span>
+        </h2>
+        <p class="cta-sub">
+          Nada de templates genéricos. Nada de amadorismo. Sua marca no digital do jeito que ela merece — profissional,
+          rápida e pronta para converter.
+        </p>
+        <div class="cta-actions">
+          <a href="/cdn-cgi/l/email-protection#ef8086af8486828a9d8e8c808b8688869b8e83c18c8082c18d9d"
+            class="btn btn-primary btn-lg">
+            Pedir orçamento agora
           </a>
-          <a href="#" class="footer-social" aria-label="LinkedIn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="https://wa.me/5511999999999" class="footer-social" aria-label="WhatsApp">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.843L0 24l6.34-1.498A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.79 9.79 0 01-5.006-1.374l-.36-.214-3.727.88.942-3.636-.234-.374A9.761 9.761 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/></svg>
+          <a href="https://wa.me/5511999999999?text=Oi%2C%20quero%20saber%20mais%20sobre%20os%20planos%20da%20Kimera%20Co."
+            target="_blank" rel="noopener" class="cta-wpp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.843L0 24l6.34-1.498A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.79 9.79 0 01-5.006-1.374l-.36-.214-3.727.88.942-3.636-.234-.374A9.761 9.761 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z" />
+            </svg>
+            Chamar no WhatsApp
           </a>
         </div>
       </div>
-
-      <!-- Serviços -->
-      <div class="footer-col">
-        <div class="footer-col-title">Serviços</div>
-        <ul>
-          <li><a href="#value">Site Institucional</a></li>
-          <li><a href="#value">Landing Page</a></li>
-          <li><a href="#value">Identidade Visual</a></li>
-          <li><a href="#value">E-mail Profissional</a></li>
-          <li><a href="#value">Manutenção</a></li>
-        </ul>
-      </div>
-
-      <!-- Empresa -->
-      <div class="footer-col">
-        <div class="footer-col-title">Empresa</div>
-        <ul>
-          <li><a href="#metodo">Método</a></li>
-          <li><a href="#portfolio">Portfólio</a></li>
-          <li><a href="#depoimentos">Clientes</a></li>
-          <li><a href="#planos">Planos</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
-
-      <!-- Contato -->
-      <div class="footer-col">
-        <div class="footer-col-title">Contato</div>
-        <ul>
-          <li><a href="mailto:oi@kimeracodigital.com.br">oi@kimeracodigital.com.br</a></li>
-          <li><a href="https://wa.me/5511999999999">+55 11 99999-9999</a></li>
-          <li><a href="#cta-final">Pedir orçamento</a></li>
-        </ul>
-      </div>
     </div>
+  </section>
 
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2025 Kimera Co. Todos os direitos reservados.</div>
-      <div class="footer-legal">
-        <a href="#">Política de Privacidade</a>
-        <a href="#">Termos de Uso</a>
-      </div>
-    </div>
+  <a href="https://wa.me/5545999997579" class="wpp-float" target="_blank" rel="noopener"
+    aria-label="Chamar no WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor"
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path fill="currentColor"
+        d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.843L0 24l6.34-1.498A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.79 9.79 0 01-5.006-1.374l-.36-.214-3.727.88.942-3.636-.234-.374A9.761 9.761 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z" />
+    </svg>
+  </a>
+  <div id="wpp-pop" class="wpp-pop" aria-hidden="true">
+    <button class="wpp-pop-close" type="button" aria-label="Fechar">×</button>
+    <div class="wpp-pop-title">Ficou com alguma dúvida?</div>
+    <div class="wpp-pop-sub">Chama no WhatsApp que eu respondo rapidinho.</div>
   </div>
-</footer>
 
-<!-- ─── SCRIPTS ──────────────────────────────────────────────── -->
-<!-- GSAP + ScrollTrigger -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Lenis smooth scroll -->
-<script src="https://unpkg.com/lenis@1.3.17/dist/lenis.min.js"></script> 
+  <!-- ─── FOOTER ───────────────────────────────────────────────── -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo">Kimera<span>.</span></a>
+          <p>Presença digital completa para empresas que querem crescer de verdade. Site, identidade e e-mail
+            profissional — tudo em um só lugar.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a href="#" class="footer-social" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+            <a href="https://wa.me/5511999999999" class="footer-social" aria-label="WhatsApp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.843L0 24l6.34-1.498A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.79 9.79 0 01-5.006-1.374l-.36-.214-3.727.88.942-3.636-.234-.374A9.761 9.761 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z" />
+              </svg>
+            </a>
+          </div>
+        </div>
 
-<!-- Inline bootstrap (avoids module resolution issues when opened as file://) -->
-<script>
-/* ──── UTILS ──────────────────────────────────────────────── */
-function splitTextWords(el) {
-  if (!el) return [];
-  const text = el.textContent.trim();
-  el.innerHTML = text.split(/\s+/).map(w =>
-    `<span class="sw" style="display:inline-block;overflow:hidden;"><span class="swi" style="display:inline-block;">${w}</span></span>`
-  ).join(' ');
-  return el.querySelectorAll('.swi');
-}
+        <!-- Serviços -->
+        <div class="footer-col">
+          <div class="footer-col-title">Serviços</div>
+          <ul>
+            <li><a href="#value">Site Institucional</a></li>
+            <li><a href="#value">Landing Page</a></li>
+            <li><a href="#value">Identidade Visual</a></li>
+            <li><a href="#value">E-mail Profissional</a></li>
+            <li><a href="#value">Manutenção</a></li>
+          </ul>
+        </div>
 
-function initCursor() {
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-  const dot = document.querySelector('.cursor-dot');
-  const ring = document.querySelector('.cursor-ring');
-  if (!dot || !ring) return;
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    gsap.to(dot, { x: mx, y: my, duration: 0.08, ease: 'none' });
-  });
-  function animRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    gsap.set(ring, { x: rx, y: ry });
-    requestAnimationFrame(animRing);
-  }
-  animRing();
-  document.querySelectorAll('a, button, .portfolio-card, .value-card, .pricing-card').forEach(el => {
-    el.addEventListener('mouseenter', () => { dot.classList.add('is-hover'); ring.classList.add('is-hover'); });
-    el.addEventListener('mouseleave', () => { dot.classList.remove('is-hover'); ring.classList.remove('is-hover'); });
-  });
-  document.addEventListener('mouseleave', () => { dot.classList.add('is-hidden'); ring.classList.add('is-hidden'); });
-  document.addEventListener('mouseenter', () => { dot.classList.remove('is-hidden'); ring.classList.remove('is-hidden'); });
-}
+        <!-- Empresa -->
+        <div class="footer-col">
+          <div class="footer-col-title">Empresa</div>
+          <ul>
+            <li><a href="#metodo">Método</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#depoimentos">Clientes</a></li>
+            <li><a href="#planos">Planos</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
 
-function initRipples() {
-  document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
-    btn.addEventListener('click', e => {
-      const rect = btn.getBoundingClientRect();
-      const r = document.createElement('span');
-      r.style.cssText = `position:absolute;border-radius:50%;width:4px;height:4px;left:${e.clientX - rect.left}px;top:${e.clientY - rect.top}px;transform:translate(-50%,-50%) scale(0);background:rgba(255,255,255,0.3);pointer-events:none;`;
-      btn.appendChild(r);
-      gsap.to(r, { scale: 60, opacity: 0, duration: 0.7, ease: 'power2.out', onComplete: () => r.remove() });
-    });
-  });
-}
+        <!-- Contato -->
+        <div class="footer-col">
+          <div class="footer-col-title">Contato</div>
+          <ul>
+            <li><a href="#"><span class="__cf_email__">contato@kimeraco.com.br</span></a></li>
+            <li><a href="https://wa.me/5545999997579">+55 45 99999-7579</a></li>
+            <li><a href="#cta-final">Pedir orçamento</a></li>
+          </ul>
+        </div>
+      </div>
 
-function animateCounter(el, target, suffix, dur) {
-  const obj = { v: 0 };
-  gsap.to(obj, { v: target, duration: dur || 2, ease: 'power2.out', onUpdate() { el.textContent = Math.round(obj.v) + suffix; } });
-}
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 Kimera Co. Todos os direitos reservados.</div>
+        <div class="footer-legal">
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos de Uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-function tiltEffect(el, deg) {
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-  el.addEventListener('mousemove', e => {
-    const r = el.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    gsap.to(el, { rotationX: -y * deg, rotationY: x * deg, transformPerspective: 800, duration: 0.35, ease: 'power2.out' });
-  });
-  el.addEventListener('mouseleave', () => gsap.to(el, { rotationX: 0, rotationY: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' }));
-}
+  <!-- ─── SCRIPTS ──────────────────────────────────────────────── -->
+  <!-- GSAP + ScrollTrigger -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.3.17/dist/lenis.min.js"></script>
 
-function magneticEffect(el, strength) {
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-  el.addEventListener('mousemove', e => {
-    const r = el.getBoundingClientRect();
-    const dx = (e.clientX - (r.left + r.width / 2)) * strength;
-    const dy = (e.clientY - (r.top + r.height / 2)) * strength;
-    gsap.to(el, { x: dx, y: dy, duration: 0.4, ease: 'power2.out' });
-  });
-  el.addEventListener('mouseleave', () => gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' }));
-}
+  <!-- Inline bootstrap (avoids module resolution issues when opened as file://) -->
+  <script>
+    /* ──── UTILS ──────────────────────────────────────────────── */
+    function splitTextWords(el) {
+      if (!el) return [];
+      const text = el.textContent.trim();
+      el.innerHTML = text.split(/\s+/).map(w =>
+        `<span class="sw" style="display:inline-block;overflow:hidden;"><span class="swi" style="display:inline-block;">${w}</span></span>`
+      ).join(' ');
+      return el.querySelectorAll('.swi');
+    }
+
+    function initRipples() {
+      // Pure CSS animation — no GSAP per-click
+      document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
+        btn.addEventListener('click', e => {
+          const rect = btn.getBoundingClientRect();
+          const r = document.createElement('span');
+          const size = Math.max(rect.width, rect.height) * 2;
+          r.style.cssText = [
+            'position:absolute',
+            'border-radius:50%',
+            `width:${size}px`, `height:${size}px`,
+            `left:${e.clientX - rect.left - size / 2}px`,
+            `top:${e.clientY - rect.top - size / 2}px`,
+            'background:rgba(255,255,255,0.18)',
+            'pointer-events:none',
+            'animation:ripple-out 0.55s ease-out forwards',
+          ].join(';');
+          btn.appendChild(r);
+          r.addEventListener('animationend', () => r.remove(), { once: true });
+        });
+      });
+    }
+
+    function animateCounter(el, target, suffix, dur) {
+      const obj = { v: 0 };
+      gsap.to(obj, { v: target, duration: dur || 2, ease: 'power2.out', onUpdate() { el.textContent = Math.round(obj.v) + suffix; } });
+    }
+
+    function tiltEffect(el, deg) {
+      if (window.matchMedia('(pointer: coarse)').matches) return;
+      if (window._kimeraLowEnd) return;
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        gsap.to(el, { rotationX: -y * deg, rotationY: x * deg, transformPerspective: 800, duration: 0.35, ease: 'power2.out' });
+      });
+      el.addEventListener('mouseleave', () => gsap.to(el, { rotationX: 0, rotationY: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' }));
+    }
+
+    function magneticEffect(el, strength) {
+      if (window.matchMedia('(pointer: coarse)').matches) return;
+      if (window._kimeraLowEnd) return;
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) * strength;
+        const dy = (e.clientY - (r.top + r.height / 2)) * strength;
+        gsap.to(el, { x: dx, y: dy, duration: 0.4, ease: 'power2.out' });
+      });
+      el.addEventListener('mouseleave', () => gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' }));
+    }
 
 function initFAQ() {
-  document.querySelectorAll('.faq-item').forEach(item => {
+  const root = document.getElementById('faq');
+  const list = root?.querySelector('.faq-list');
+  const media = root?.querySelector('.faq-media');
+  if (!root || !list) return;
+
+  const items = Array.from(list.querySelectorAll('.faq-item'));
+  const mq = window.matchMedia('(max-width:900px)');
+
+  function setMediaHeight() {
+    if (!media) return;
+    if (mq.matches) { media.style.height = '260px'; return; }
+    const h = list.getBoundingClientRect().height;
+    media.style.height = Math.round(h) + 'px';
+  }
+
+  function closeItem(item) {
+    item.classList.remove('open');
     const q = item.querySelector('.faq-question');
     const a = item.querySelector('.faq-answer');
-    q.addEventListener('click', () => {
+    q?.setAttribute('aria-expanded', 'false');
+    a?.setAttribute('aria-hidden', 'true');
+    if (a) gsap.to(a, { maxHeight: 0, duration: 0.35, ease: 'power2.inOut', onUpdate: setMediaHeight, onComplete: setMediaHeight });
+  }
+
+  function openItem(item, animate = true) {
+    item.classList.add('open');
+    const q = item.querySelector('.faq-question');
+    const a = item.querySelector('.faq-answer');
+    q?.setAttribute('aria-expanded', 'true');
+    a?.setAttribute('aria-hidden', 'false');
+
+    if (!a) return;
+    const target = a.scrollHeight + 40;
+
+    if (animate) {
+      gsap.to(a, { maxHeight: target, duration: 0.5, ease: 'expo.out', onUpdate: setMediaHeight, onComplete: setMediaHeight });
+    } else {
+      gsap.set(a, { maxHeight: target });
+      setMediaHeight();
+    }
+  }
+
+  // Click handler
+  items.forEach(item => {
+    const q = item.querySelector('.faq-question');
+    const a = item.querySelector('.faq-answer');
+
+    // estado inicial acessível
+    q?.setAttribute('aria-expanded', 'false');
+    a?.setAttribute('aria-hidden', 'true');
+
+    q?.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(oi => {
-        oi.classList.remove('open');
-        gsap.to(oi.querySelector('.faq-answer'), { maxHeight: 0, duration: 0.4, ease: 'power2.inOut' });
-        oi.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+
+      items.forEach(oi => { if (oi !== item) closeItem(oi); });
+      if (isOpen) closeItem(item);
+      else openItem(item, true);
+    });
+  });
+
+  // ✅ Deixa o primeiro aberto
+  if (items[0]) openItem(items[0], false);
+
+  // Sync altura (desktop)
+  setMediaHeight();
+  window.addEventListener('resize', setMediaHeight);
+  mq.addEventListener?.('change', setMediaHeight);
+
+  // Se o FAQ crescer/encolher (por abrir respostas), a foto acompanha
+  if ('ResizeObserver' in window && media) {
+    const ro = new ResizeObserver(setMediaHeight);
+    ro.observe(list);
+  }
+}
+
+    function initMobileNav() {
+      const burger = document.querySelector('.nav-burger');
+      const drawer = document.querySelector('.nav-drawer');
+      if (!burger || !drawer) return;
+      burger.addEventListener('click', () => {
+        const open = burger.classList.toggle('open');
+        drawer.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open);
+        drawer.setAttribute('aria-hidden', !open);
       });
-      if (!isOpen) {
-        item.classList.add('open');
-        gsap.to(a, { maxHeight: a.scrollHeight + 40, duration: 0.5, ease: 'expo.out' });
-        q.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-}
-
-function initMobileNav() {
-  const burger = document.querySelector('.nav-burger');
-  const drawer = document.querySelector('.nav-drawer');
-  if (!burger || !drawer) return;
-  burger.addEventListener('click', () => {
-    const open = burger.classList.toggle('open');
-    drawer.classList.toggle('open', open);
-    burger.setAttribute('aria-expanded', open);
-    drawer.setAttribute('aria-hidden', !open);
-  });
-  drawer.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      burger.classList.remove('open');
-      drawer.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-      drawer.setAttribute('aria-hidden', 'true');
-    });
-  });
-  document.addEventListener('click', e => {
-    if (!burger.contains(e.target) && !drawer.contains(e.target)) {
-      burger.classList.remove('open');
-      drawer.classList.remove('open');
-    }
-  });
-}
-
-/* ──── PRELOADER ─────────────────────────────────────────────── */
-function runPreloader() {
-  return new Promise(resolve => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-      document.getElementById('preloader').style.display = 'none';
-      return resolve();
-    }
-    const bar = document.querySelector('.preloader-bar');
-    const count = document.querySelector('.preloader-count');
-    const tl = gsap.timeline({
-      onComplete() {
-        gsap.to('#preloader', {
-          opacity: 0, duration: 0.6, ease: 'power2.inOut',
-          onComplete() {
-            document.getElementById('preloader').style.display = 'none';
-            resolve();
-          }
+      drawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          burger.classList.remove('open');
+          drawer.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+          drawer.setAttribute('aria-hidden', 'true');
         });
-      }
-    });
-    tl.to(bar, {
-      width: '100%', duration: 1.5, ease: 'power2.inOut',
-      onUpdate() { if (count) count.textContent = Math.round(this.progress() * 100) + '%'; }
-    })
-    .to('.preloader-logo', { y: -12, opacity: 0, duration: 0.3, ease: 'power2.in' }, '-=0.3');
-  });
-}
-
-/* ──── HERO ANIM ─────────────────────────────────────────────── */
-function initHero() {
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) {
-    gsap.set(['.hero-tag', '.hero-sub', '.hero-actions', '.hero-scroll'], { opacity: 1 });
-    gsap.set('.hero-title .line-inner', { y: 0 });
-    return;
-  }
-  const lines = document.querySelectorAll('.hero-title .line-inner');
-  const tl = gsap.timeline({ delay: 0.1 });
-  tl.to('.hero-tag', { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out' })
-    .to(lines, { y: '0%', duration: 1, ease: 'expo.out', stagger: 0.1 }, '-=0.4')
-    .to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out' }, '-=0.5')
-    .to('.hero-actions', { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }, '-=0.4')
-    .to('.hero-scroll', { opacity: 1, duration: 0.5 }, '-=0.2');
-
-  // Parallax hero bg
-  gsap.to('.hero-radial', {
-    y: 100, ease: 'none',
-    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
-  });
-}
-
-/* ──── SECTION REVEALS ───────────────────────────────────────── */
-function initReveal() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  // Section headers
-  document.querySelectorAll('.section-header').forEach(h => {
-    const badge = h.querySelector('.label-badge');
-    const heading = h.querySelector('.t-h2, .t-h1');
-    const sub = h.querySelector('.section-subtitle');
-    const els = [badge, heading, sub].filter(Boolean);
-    gsap.from(els, { opacity: 0, y: 30, stagger: 0.1, duration: 0.9, ease: 'expo.out',
-      scrollTrigger: { trigger: h, start: 'top 88%' }
-    });
-  });
-
-  // Value cards
-  gsap.from('.value-card', {
-    opacity: 0, y: 60, scale: 0.97, stagger: { amount: 0.5 }, duration: 0.9, ease: 'expo.out',
-    scrollTrigger: { trigger: '#value .grid-3', start: 'top 85%' }
-  });
-
-  // Pricing cards
-  gsap.from('.pricing-card', {
-    opacity: 0, y: 50, stagger: 0.08, duration: 0.9, ease: 'expo.out',
-    scrollTrigger: { trigger: '.pricing-grid', start: 'top 85%' }
-  });
-
-  // Portfolio cards
-  gsap.from('.portfolio-card', {
-    opacity: 0, y: 40, scale: 0.97, stagger: { amount: 0.5 }, duration: 0.9, ease: 'expo.out',
-    scrollTrigger: { trigger: '.portfolio-grid', start: 'top 85%' }
-  });
-
-  // Testimonial cards
-  gsap.from('.testimonial-card', {
-    opacity: 0, y: 40, stagger: 0.1, duration: 0.9, ease: 'expo.out',
-    scrollTrigger: { trigger: '.testimonials-grid', start: 'top 85%' }
-  });
-  gsap.from('.social-num-card', {
-    opacity: 0, y: 30, stagger: 0.08, duration: 0.8, ease: 'expo.out',
-    scrollTrigger: { trigger: '.social-numbers', start: 'top 85%' }
-  });
-
-  // FAQ items
-  gsap.from('.faq-item', {
-    opacity: 0, x: -20, stagger: 0.06, duration: 0.7, ease: 'expo.out',
-    scrollTrigger: { trigger: '.faq-list', start: 'top 88%' }
-  });
-
-  // Metodo
-  gsap.from('.metodo-steps', { opacity: 0, x: -40, duration: 1, ease: 'expo.out',
-    scrollTrigger: { trigger: '#metodo .metodo-wrapper', start: 'top 80%' }
-  });
-  gsap.from('.metodo-visual', { opacity: 0, x: 40, duration: 1, ease: 'expo.out',
-    scrollTrigger: { trigger: '#metodo .metodo-wrapper', start: 'top 80%' }
-  });
-
-  // CTA final
-  const ctaTitle = document.querySelector('.cta-title');
-  if (ctaTitle) {
-    const words = splitTextWords(ctaTitle);
-    gsap.from(words, {
-      y: 50, opacity: 0, stagger: 0.04, duration: 0.9, ease: 'expo.out',
-      scrollTrigger: { trigger: '#cta-final', start: 'top 75%' }
-    });
-  }
-  gsap.from('.cta-sub', { opacity: 0, y: 20, duration: 0.7, ease: 'expo.out',
-    scrollTrigger: { trigger: '#cta-final', start: 'top 70%' }
-  });
-  gsap.from('.cta-actions > *', { opacity: 0, y: 20, stagger: 0.1, duration: 0.6, ease: 'expo.out',
-    scrollTrigger: { trigger: '.cta-actions', start: 'top 85%' }
-  });
-
-  // Footer
-  gsap.from('.footer-grid > *', {
-    opacity: 0, y: 30, stagger: 0.1, duration: 0.8, ease: 'expo.out',
-    scrollTrigger: { trigger: 'footer', start: 'top 90%' }
-  });
-
-  // Recurrence
-  gsap.from('.pricing-recurrence', { opacity: 0, y: 30, duration: 0.8, ease: 'expo.out',
-    scrollTrigger: { trigger: '.pricing-recurrence', start: 'top 90%' }
-  });
-}
-
-/* ──── COUNTERS ───────────────────────────────────────────────── */
-function initCounters() {
-  const data = [
-    { id: 'counter-1', val: 150, suffix: '+' },
-    { id: 'counter-2', val: 98,  suffix: '%' },
-    { id: 'counter-3', val: 5,   suffix: 'x' },
-    { id: 'counter-4', val: 24,  suffix: 'h' }
-  ];
-  data.forEach(({ id, val, suffix }) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    let done = false;
-    ScrollTrigger.create({
-      trigger: el, start: 'top 90%',
-      onEnter() {
-        if (done) return; done = true;
-        animateCounter(el, val, suffix, 2.2);
-      }
-    });
-  });
-}
-
-/* ──── NAV ACTIVE ────────────────────────────────────────────── */
-function initNavActive() {
-  const nav = document.getElementById('nav');
-  ScrollTrigger.create({
-    start: 80,
-    onEnter: () => nav.classList.add('scrolled'),
-    onLeaveBack: () => nav.classList.remove('scrolled')
-  });
-
-  const links = document.querySelectorAll('.nav-link');
-  document.querySelectorAll('section[id]').forEach(sec => {
-    ScrollTrigger.create({
-      trigger: sec, start: 'top 55%', end: 'bottom 55%',
-      onEnter: () => setActive(sec.id),
-      onEnterBack: () => setActive(sec.id)
-    });
-  });
-  function setActive(id) {
-    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
-  }
-}
-
-/* ──── METODO STEP ACTIVATION ────────────────────────────────── */
-function initMetodoSteps() {
-  const steps = document.querySelectorAll('.metodo-step');
-  const iconEl = document.querySelector('.metodo-step-icon-lg');
-  const titleEl = document.querySelector('.metodo-step-title-lg');
-  const subEl = document.querySelector('.metodo-step-sub-lg');
-  const stepData = [
-    { icon: '🔍', title: 'Diagnóstico', sub: 'Entendemos seu negócio, seu mercado e seus objetivos em profundidade.' },
-    { icon: '✏️', title: 'Estratégia',  sub: 'Definimos arquitetura, tom de voz, CTAs e a jornada ideal de conversão.' },
-    { icon: '🎨', title: 'Design',      sub: 'Criamos identidade visual e layout no Figma. Você aprova antes do código.' },
-    { icon: '⚡', title: 'Desenvolvimento', sub: 'Código limpo, responsivo e otimizado para conversão e velocidade.' },
-    { icon: '🚀', title: 'Entrega',     sub: 'Publicamos, configuramos o e-mail e entregamos com treinamento incluso.' },
-  ];
-
-  function activate(idx) {
-    steps.forEach((s, i) => s.classList.toggle('active', i === idx));
-    if (iconEl && stepData[idx]) {
-      const d = stepData[idx];
-      gsap.to([iconEl, titleEl, subEl], {
-        opacity: 0, y: -8, duration: 0.18, ease: 'power2.in',
-        onComplete() {
-          iconEl.textContent = d.icon;
-          titleEl.textContent = d.title;
-          subEl.textContent = d.sub;
-          gsap.to([iconEl, titleEl, subEl], { opacity: 1, y: 0, duration: 0.35, ease: 'expo.out' });
+      });
+      document.addEventListener('click', e => {
+        if (!burger.contains(e.target) && !drawer.contains(e.target)) {
+          burger.classList.remove('open');
+          drawer.classList.remove('open');
         }
       });
     }
-  }
 
-  activate(0);
-  steps.forEach((s, i) => {
-    s.addEventListener('mouseenter', () => activate(i));
-    s.addEventListener('focus', () => activate(i));
-    s.addEventListener('click', () => activate(i));
-    // Scroll-based on mobile
-    ScrollTrigger.create({
-      trigger: s, start: 'top 60%',
-      onEnter: () => activate(i),
-      onEnterBack: () => activate(i)
-    });
-  });
-}
+    /* ──── PRELOADER ─────────────────────────────────────────────── */
+    function runPreloader() {
+      return new Promise(resolve => {
+        const pre = document.getElementById('preloader');
+        if (!pre) return resolve();
 
-/* ──── TILT + MAGNETIC ───────────────────────────────────────── */
-function initInteractions() {
-  document.querySelectorAll('.value-card').forEach(c => tiltEffect(c, 5));
-  document.querySelectorAll('.portfolio-card').forEach(c => tiltEffect(c, 6));
-  document.querySelectorAll('.cta-actions .btn, .cta-actions .cta-wpp').forEach(b => magneticEffect(b, 0.3));
-  document.querySelectorAll('.hero-actions .btn').forEach(b => magneticEffect(b, 0.25));
-}
+        // Safety net: never block the site more than 4s no matter what
+        const MAX_WAIT = 4000;
+        let done = false;
+        function finish() {
+          if (done) return;
+          done = true;
+          pre.classList.add('done');
+          // Remove from DOM after transition
+          pre.addEventListener('transitionend', () => {
+            pre.style.display = 'none';
+            resolve();
+          }, { once: true });
+          // Double safety — if transitionend never fires
+          setTimeout(() => { pre.style.display = 'none'; resolve(); }, 800);
+        }
+        setTimeout(finish, MAX_WAIT);
 
-/* ──── LENIS + MAIN ──────────────────────────────────────────── */
-async function main() {
-  // Lenis
-  const lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(t => lenis.raf(t * 1000));
-  gsap.ticker.lagSmoothing(0);
+        const bar = pre.querySelector('.preloader-bar');
+        const count = pre.querySelector('.preloader-count');
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // GSAP plugins
-  gsap.registerPlugin(ScrollTrigger);
+        if (reduced) { finish(); return; }
 
-  // Preloader
-  await runPreloader();
+        // Animate bar with rAF — zero GSAP dependency so it works even if GSAP is slow to load
+        const START = performance.now();
+        const DUR = 1400; // ms
+        function step(now) {
+          const p = Math.min((now - START) / DUR, 1);
+          const eased = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p; // ease-in-out quad
+          if (bar) bar.style.width = (eased * 100) + '%';
+          if (count) count.textContent = Math.round(eased * 100) + '%';
+          if (p < 1) requestAnimationFrame(step);
+          else finish();
+        }
+        requestAnimationFrame(step);
+      });
+    }
 
-  // Init everything
-  initCursor();
-  initRipples();
-  initMobileNav();
-  initFAQ();
-  initNavActive();
-  initHero();
-  initReveal();
-  initCounters();
-  initMetodoSteps();
-  initInteractions();
+    /* ──── VIDEO SCRUB ──────────────────────────────────────────────
+       The hero becomes a pinned section (3× viewport height of scroll).
+       ScrollTrigger.scrub drives video.currentTime from 0 → duration.
+       Falls back gracefully if the video can't load.
+    ────────────────────────────────────────────────────────────── */
+    function initVideoScrub() {
+      const video = document.getElementById('heroVideo');
+      const hero = document.getElementById('hero');
+      const fill = document.getElementById('scrubFill');
+      const hud = document.getElementById('scrubHud');
+      if (!video || !hero) return;
+      if (window._kimeraLowEnd) { video.style.display = 'none'; return; }
 
-  ScrollTrigger.refresh();
-}
+      // The scroll distance allocated to the video scrub (px).
+      // 2.5 × window height gives a comfortable pace.
+      const SCRUB_DISTANCE = window.innerHeight * 2.5;
 
-document.addEventListener('DOMContentLoaded', main);
-</script>
+      // Proxy object GSAP will animate; we copy its value → video.currentTime
+      const proxy = { t: 0 };
+
+      let scrubST = null;
+
+      function buildScrub() {
+        if (scrubST) { scrubST.kill(); scrubST = null; }
+        if (!video.duration || video.duration === Infinity) return;
+
+        scrubST = ScrollTrigger.create({
+          trigger: hero,
+          start: 'top top',
+          end: `+=${SCRUB_DISTANCE}`,
+          pin: true,           // pins hero while we scrub
+          pinSpacing: true,        // pushes subsequent content down
+          scrub: 1.2,            // lag in seconds → buttery smooth
+          onUpdate(self) {
+            // Map scroll progress [0,1] → video duration
+            const t = self.progress * video.duration;
+            video.currentTime = t;
+            proxy.t = t;
+
+            // Update HUD bar
+            if (fill) fill.style.width = (self.progress * 100) + '%';
+          },
+          onEnter() {
+            if (hud) hud.classList.add('visible');
+          },
+          onLeave() {
+            if (hud) hud.classList.remove('visible');
+            video.currentTime = video.duration;
+          },
+          onLeaveBack() {
+            if (hud) hud.classList.remove('visible');
+            video.currentTime = 0;
+          },
+        });
+      }
+
+      function onMetadata() {
+        video.currentTime = 0;
+        video.classList.add('is-ready');
+        buildScrub();
+      }
+
+      if (video.readyState >= 1) {
+        onMetadata();
+      } else {
+        video.addEventListener('loadedmetadata', onMetadata, { once: true });
+      }
+
+      video.addEventListener('error', () => {
+        video.style.display = 'none';
+        console.warn('[Kimera] Hero video failed to load — scrub disabled. Swap src in #heroVideo.');
+      });
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (scrubST) {
+            scrubST.kill();
+            scrubST = null;
+            buildScrub();
+            ScrollTrigger.refresh();
+          }
+        }, 200);
+      });
+    }
+
+    /* ──── HERO ANIM ─────────────────────────────────────────────── */
+    function initHero() {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) {
+        gsap.set(['.hero-tag', '.hero-sub', '.hero-actions', '.hero-scroll'], { opacity: 1 });
+        gsap.set('.hero-title .line-inner', { y: 0 });
+        return;
+      }
+
+      const lines = document.querySelectorAll('.hero-title .line-inner');
+      const tl = gsap.timeline({ delay: 0.1 });
+      tl.to('.hero-tag', { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out' })
+        .to(lines, { y: '0%', duration: 1, ease: 'expo.out', stagger: 0.1 }, '-=0.4')
+        .to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out' }, '-=0.5')
+        .to('.hero-actions', { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }, '-=0.4')
+        .to('.hero-scroll', { opacity: 1, duration: 0.5 }, '-=0.2');
+
+      gsap.to('.hero-radial', {
+        y: 80, ease: 'none',
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: '+=80%',
+          scrub: true
+        }
+      });
+
+      gsap.to('.hero-inner', {
+        opacity: 0.15,
+        y: -40,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: `+=${window.innerHeight * 1.2}`,
+          scrub: true
+        }
+      });
+    }
+
+    /* ──── SECTION REVEALS ───────────────────────────────────────── */
+    function initReveal() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      document.querySelectorAll('.section-header').forEach(h => {
+        const badge = h.querySelector('.label-badge');
+        const heading = h.querySelector('.t-h2, .t-h1');
+        const sub = h.querySelector('.section-subtitle');
+        const els = [badge, heading, sub].filter(Boolean);
+        gsap.from(els, {
+          opacity: 0, y: 30, stagger: 0.1, duration: 0.9, ease: 'expo.out',
+          scrollTrigger: { trigger: h, start: 'top 88%' }
+        });
+      });
+
+      gsap.from('.value-card', {
+        opacity: 0, y: 60, scale: 0.97, stagger: { amount: 0.5 }, duration: 0.9, ease: 'expo.out',
+        scrollTrigger: { trigger: '#value .grid-3', start: 'top 85%' }
+      });
+
+      gsap.from('.pricing-card', {
+        opacity: 0, y: 50, stagger: 0.08, duration: 0.9, ease: 'expo.out',
+        scrollTrigger: { trigger: '.pricing-grid', start: 'top 85%' }
+      });
+
+      gsap.from('.portfolio-card', {
+        opacity: 0, y: 40, scale: 0.97, stagger: { amount: 0.5 }, duration: 0.9, ease: 'expo.out',
+        scrollTrigger: { trigger: '.portfolio-grid', start: 'top 85%' }
+      });
+
+      gsap.from('.testimonial-card', {
+        opacity: 0, y: 40, stagger: 0.1, duration: 0.9, ease: 'expo.out',
+        scrollTrigger: { trigger: '.testimonials-grid', start: 'top 85%' }
+      });
+      gsap.from('.social-num-card', {
+        opacity: 0, y: 30, stagger: 0.08, duration: 0.8, ease: 'expo.out',
+        scrollTrigger: { trigger: '.social-numbers', start: 'top 85%' }
+      });
+
+      gsap.from('.faq-item', {
+        opacity: 0, x: -20, stagger: 0.06, duration: 0.7, ease: 'expo.out',
+        scrollTrigger: { trigger: '.faq-list', start: 'top 88%' }
+      });
+
+      gsap.from('.metodo-steps', {
+        opacity: 0, x: -40, duration: 1, ease: 'expo.out',
+        scrollTrigger: { trigger: '#metodo .metodo-wrapper', start: 'top 80%' }
+      });
+      gsap.from('.metodo-visual', {
+        opacity: 0, x: 40, duration: 1, ease: 'expo.out',
+        scrollTrigger: { trigger: '#metodo .metodo-wrapper', start: 'top 80%' }
+      });
+
+      const ctaTitle = document.querySelector('.cta-title');
+      if (ctaTitle) {
+        const words = splitTextWords(ctaTitle);
+        gsap.from(words, {
+          y: 50, opacity: 0, stagger: 0.04, duration: 0.9, ease: 'expo.out',
+          scrollTrigger: { trigger: '#cta-final', start: 'top 75%' }
+        });
+      }
+      gsap.from('.cta-sub', {
+        opacity: 0, y: 20, duration: 0.7, ease: 'expo.out',
+        scrollTrigger: { trigger: '#cta-final', start: 'top 70%' }
+      });
+      gsap.from('.cta-actions > *', {
+        opacity: 0, y: 20, stagger: 0.1, duration: 0.6, ease: 'expo.out',
+        scrollTrigger: { trigger: '.cta-actions', start: 'top 85%' }
+      });
+
+      gsap.from('.footer-grid > *', {
+        opacity: 0, y: 30, stagger: 0.1, duration: 0.8, ease: 'expo.out',
+        scrollTrigger: { trigger: 'footer', start: 'top 90%' }
+      });
+
+      gsap.from('.pricing-recurrence', {
+        opacity: 0, y: 30, duration: 0.8, ease: 'expo.out',
+        scrollTrigger: { trigger: '.pricing-recurrence', start: 'top 90%' }
+      });
+    }
+
+    /* ──── COUNTERS ───────────────────────────────────────────────── */
+    function initCounters() {
+      const data = [
+        { id: 'counter-1', val: 150, suffix: '+' },
+        { id: 'counter-2', val: 98, suffix: '%' },
+        { id: 'counter-3', val: 5, suffix: 'x' },
+        { id: 'counter-4', val: 24, suffix: 'h' }
+      ];
+      data.forEach(({ id, val, suffix }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        let done = false;
+        ScrollTrigger.create({
+          trigger: el, start: 'top 90%',
+          onEnter() {
+            if (done) return; done = true;
+            animateCounter(el, val, suffix, 2.2);
+          }
+        });
+      });
+    }
+
+    /* ──── NAV ACTIVE ────────────────────────────────────────────── */
+    function initNavActive() {
+      const nav = document.getElementById('nav');
+      ScrollTrigger.create({
+        start: 80,
+        onEnter: () => nav.classList.add('scrolled'),
+        onLeaveBack: () => nav.classList.remove('scrolled')
+      });
+
+      const links = document.querySelectorAll('.nav-link');
+      document.querySelectorAll('section[id]').forEach(sec => {
+        ScrollTrigger.create({
+          trigger: sec, start: 'top 55%', end: 'bottom 55%',
+          onEnter: () => setActive(sec.id),
+          onEnterBack: () => setActive(sec.id)
+        });
+      });
+      function setActive(id) {
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      }
+    }
+
+    /* ──── METODO STEP ACTIVATION ────────────────────────────────── */
+    function initMetodoSteps() {
+      const steps = document.querySelectorAll('.metodo-step');
+      const iconEl = document.querySelector('.metodo-step-icon-lg');
+      const titleEl = document.querySelector('.metodo-step-title-lg');
+      const subEl = document.querySelector('.metodo-step-sub-lg');
+      const stepData = [
+        { icon: '🔍', title: 'Diagnóstico', sub: 'Entendemos seu negócio, seu mercado e seus objetivos em profundidade.' },
+        { icon: '✏️', title: 'Estratégia', sub: 'Definimos arquitetura, tom de voz, CTAs e a jornada ideal de conversão.' },
+        { icon: '🎨', title: 'Design', sub: 'Criamos identidade visual e layout no Figma. Você aprova antes do código.' },
+        { icon: '⚡', title: 'Desenvolvimento', sub: 'Código limpo, responsivo e otimizado para conversão e velocidade.' },
+        { icon: '🚀', title: 'Entrega', sub: 'Publicamos, configuramos o e-mail e entregamos com treinamento incluso.' },
+      ];
+
+      function activate(idx) {
+        steps.forEach((s, i) => s.classList.toggle('active', i === idx));
+        if (iconEl && stepData[idx]) {
+          const d = stepData[idx];
+          gsap.to([iconEl, titleEl, subEl], {
+            opacity: 0, y: -8, duration: 0.18, ease: 'power2.in',
+            onComplete() {
+              iconEl.textContent = d.icon;
+              titleEl.textContent = d.title;
+              subEl.textContent = d.sub;
+              gsap.to([iconEl, titleEl, subEl], { opacity: 1, y: 0, duration: 0.35, ease: 'expo.out' });
+            }
+          });
+        }
+      }
+
+      activate(0);
+      steps.forEach((s, i) => {
+        s.addEventListener('mouseenter', () => activate(i));
+        s.addEventListener('focus', () => activate(i));
+        s.addEventListener('click', () => activate(i));
+        ScrollTrigger.create({
+          trigger: s, start: 'top 60%',
+          onEnter: () => activate(i),
+          onEnterBack: () => activate(i)
+        });
+      });
+    }
+
+    /* ──── TILT + MAGNETIC ───────────────────────────────────────── */
+    function initInteractions() {
+      document.querySelectorAll('.value-card').forEach(c => tiltEffect(c, 5));
+      document.querySelectorAll('.portfolio-card').forEach(c => tiltEffect(c, 6));
+      document.querySelectorAll('.cta-actions .btn, .cta-actions .cta-wpp').forEach(b => magneticEffect(b, 0.3));
+      document.querySelectorAll('.hero-actions .btn').forEach(b => magneticEffect(b, 0.25));
+    }
+
+    function initWppPop() {
+      const pop = document.getElementById('wpp-pop');
+      if (!pop) return;
+
+      const KEY = 'kimera_wpp_pop_closed';
+      if (sessionStorage.getItem(KEY)) return;
+
+      setTimeout(() => {
+        pop.classList.add('show');
+        pop.setAttribute('aria-hidden', 'false');
+      }, 5000); // 10s
+
+      pop.querySelector('.wpp-pop-close')?.addEventListener('click', () => {
+        pop.classList.remove('show');
+        pop.setAttribute('aria-hidden', 'true');
+        sessionStorage.setItem(KEY, '1'); // só marca quando fechar no X
+      });
+    }
+    /* ──── LENIS + MAIN ──────────────────────────────────────────── */
+    async function main() {
+      const lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const isLowEnd = (navigator.hardwareConcurrency || 4) < 4
+        || navigator.connection?.saveData
+        || ['slow-2g', '2g', '3g'].includes(navigator.connection?.effectiveType);
+      window._kimeraLowEnd = isLowEnd;
+      if (isLowEnd) {
+        const noise = document.querySelector('.noise-overlay');
+        if (noise) noise.style.display = 'none';
+      }
+
+      await runPreloader();
+
+      initRipples();
+      initWppPop();
+      initMobileNav();
+      initFAQ();
+      initNavActive();
+      initHero();
+      initVideoScrub();
+      initReveal();
+      initCounters();
+      initMetodoSteps();
+      initInteractions();
+
+      ScrollTrigger.refresh();
+    }
+
+    document.addEventListener('DOMContentLoaded', main);
+  </script>
 </body>
+
 </html>
