@@ -4,7 +4,7 @@
    ============================================================ */
 import { splitText, animateCounter, tiltEffect, magneticEffect } from './utils.js';
 
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const prefersReduced = MOTION.reduce;
 
 /* ──────────────────────────────────────────────────────────────
    PRELOADER
