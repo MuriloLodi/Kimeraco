@@ -93,13 +93,20 @@
 
     if (!burger || !drawer) return;
 
-    burger.addEventListener("click", () => {
+    burger.addEventListener("click", (event) => {
+      event.stopPropagation();
       setDrawer(!drawer.classList.contains("open"));
     }, { signal });
 
     $$(".nav-link", drawer).forEach((link) => {
       link.addEventListener("click", () => setDrawer(false), { signal });
     });
+
+    document.addEventListener("click", (event) => {
+      if (!burger.contains(event.target) && !drawer.contains(event.target)) {
+        setDrawer(false);
+      }
+    }, { signal });
 
     window.addEventListener("keydown", (event) => {
       if (event.key === "Escape") setDrawer(false);

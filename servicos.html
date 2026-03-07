@@ -43,7 +43,6 @@
     .page-hero-inner {
       position: relative;
       z-index: 2;
-      padding-top: var(--sp-80);
       padding-bottom: var(--sp-80);
     }
 
@@ -138,6 +137,11 @@
       color: var(--c-white-72);
       font-size: 13px;
       line-height: 1.65;
+    }
+
+    .service-point-text {
+      flex: 1;
+      min-width: 0;
     }
 
     .service-point b {
@@ -314,7 +318,7 @@
 
       <div class="container page-hero-inner">
 
-        <h1 class="t-h1 page-hero-title" id="servicos-hero-title">
+        <h1 class="hero-title" id="servicos-hero-title">
           Presença digital completa,<br><span class="t-accent">do jeito certo.</span>
         </h1>
 
@@ -377,9 +381,9 @@
             <p class="service-kicker">Sua vitrine digital com cara de empresa grande. Até 5 páginas, SEO e performance.</p>
 
             <div class="service-points">
-              <div class="service-point"><span class="service-dot">✓</span> Estrutura clara pra <b>gerar confiança</b> no primeiro clique.</div>
-              <div class="service-point"><span class="service-dot">✓</span> SEO técnico + base de performance pra <b>ranquear no Google</b>.</div>
-              <div class="service-point"><span class="service-dot">✓</span> Layout premium com identidade consistente (nada genérico).</div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">Estrutura clara pra <b>gerar confiança</b> no primeiro clique.</span></div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">SEO técnico + base de performance pra <b>ranquear no Google</b>.</span></div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">Layout premium com identidade consistente (nada genérico).</span></div>
             </div>
           </article>
 
@@ -396,9 +400,9 @@
             <p class="service-kicker">Página feita pra converter: foco em lead, orçamento e venda. Direto ao ponto.</p>
 
             <div class="service-points">
-              <div class="service-point"><span class="service-dot">✓</span> Estrutura de <b>conversão</b> com CTA e prova social.</div>
-              <div class="service-point"><span class="service-dot">✓</span> Copy organizada pra <b>reduzir objeções</b> e aumentar ação.</div>
-              <div class="service-point"><span class="service-dot">✓</span> Velocidade + SEO on-page pra tráfego pago e orgânico.</div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">Estrutura de <b>conversão</b> com CTA e prova social.</span></div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">Copy organizada pra <b>reduzir objeções</b> e aumentar ação.</span></div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">Velocidade + SEO on-page pra tráfego pago e orgânico.</span></div>
             </div>
           </article>
 
@@ -417,9 +421,9 @@
             <p class="service-kicker">Confecção de identidade completa: logo, paleta, tipografia e padrão visual.</p>
 
             <div class="service-points">
-              <div class="service-point"><span class="service-dot">✓</span> Sistema visual consistente pra <b>não parecer amador</b>.</div>
-              <div class="service-point"><span class="service-dot">✓</span> Arquivos organizados + versões pra uso real (web e social).</div>
-              <div class="service-point"><span class="service-dot">✓</span> Direção aplicada no site e materiais pra manter padrão.</div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">Sistema visual consistente pra <b>não parecer amador</b>.</span></div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">Arquivos organizados + versões pra uso real (web e social).</span></div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">Direção aplicada no site e materiais pra manter padrão.</span></div>
             </div>
           </article>
 
@@ -436,9 +440,9 @@
             <p class="service-kicker">contato@empresa.com.br + assinatura. Mais confiança em orçamento e negociação.</p>
 
             <div class="service-points">
-              <div class="service-point"><span class="service-dot">✓</span> Configuração e validações pra <b>não cair no spam</b>.</div>
-              <div class="service-point"><span class="service-dot">✓</span> Assinatura profissional alinhada com sua identidade.</div>
-              <div class="service-point"><span class="service-dot">✓</span> Organização de contas e acesso (sem bagunça).</div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">Configuração e validações pra <b>não cair no spam</b>.</span></div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">Assinatura profissional alinhada com sua identidade.</span></div>
+              <div class="service-point"><span class="service-dot">✓</span> <span class="service-point-text">Organização de contas e acesso (sem bagunça).</span></div>
             </div>
           </article>
         </div>
@@ -649,7 +653,7 @@
       <div class="container">
         <div class="cta-inner">
           <h2 class="cta-title" id="cta-title">
-            Bora colocar sua empresa<br><span class="accent">no próximo nível</span>
+            Bora colocar sua empresa<br><span class="accent"> no próximo nível</span>
           </h2>
           <p class="cta-sub">
             Se você quer uma presença digital completa, com padrão e estratégia — chama a Kimera.
@@ -945,27 +949,37 @@
     }
 
     function initMobileNav() {
+      if (window.kimeraPlanosInit) return;
+
       const burger = document.querySelector('.nav-burger');
       const drawer = document.querySelector('.nav-drawer');
-      if (!burger || !drawer) return;
-      burger.addEventListener('click', () => {
-        const open = burger.classList.toggle('open');
+      if (!burger || !drawer || burger.dataset.navInit === '1') return;
+
+      burger.dataset.navInit = '1';
+
+      const closeDrawer = () => {
+        burger.classList.remove('open');
+        drawer.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        drawer.setAttribute('aria-hidden', 'true');
+      };
+
+      burger.addEventListener('click', e => {
+        e.stopPropagation();
+        const open = !burger.classList.contains('open');
+        burger.classList.toggle('open', open);
         drawer.classList.toggle('open', open);
-        burger.setAttribute('aria-expanded', open);
-        drawer.setAttribute('aria-hidden', !open);
+        burger.setAttribute('aria-expanded', String(open));
+        drawer.setAttribute('aria-hidden', String(!open));
       });
+
       drawer.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          burger.classList.remove('open');
-          drawer.classList.remove('open');
-          burger.setAttribute('aria-expanded', 'false');
-          drawer.setAttribute('aria-hidden', 'true');
-        });
+        a.addEventListener('click', closeDrawer);
       });
+
       document.addEventListener('click', e => {
         if (!burger.contains(e.target) && !drawer.contains(e.target)) {
-          burger.classList.remove('open');
-          drawer.classList.remove('open');
+          closeDrawer();
         }
       });
     }
@@ -1342,14 +1356,6 @@
       if (GLOBAL_INIT) return;
       GLOBAL_INIT = true;
 
-      gsap.registerPlugin(ScrollTrigger);
-
-      // Lenis (uma vez só)
-      lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add(t => lenis.raf(t * 1000));
-      gsap.ticker.lagSmoothing(0);
-
       // Low-end detect (uma vez só)
       const isLowEnd =
         (navigator.hardwareConcurrency || 4) < 4 ||
@@ -1361,6 +1367,17 @@
       initRipples();
       initWppPop();
       initMobileNav();
+
+      if (!(window.gsap && window.ScrollTrigger)) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      if (window.Lenis) {
+        lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(t => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
+      }
     }
 
     function destroyPage() {
@@ -1376,8 +1393,9 @@
     }
 
     function initPage() {
+      if (!(window.gsap && window.ScrollTrigger)) return;
       // reinicializa tudo que depende do DOM da página atual
-      initFAQ();
+      if (!window.kimeraPlanosInit) initFAQ();
       initNavActive();
       initHero();
       initVideoScrub();
@@ -1388,7 +1406,9 @@
       window.kimeraPortfolioInit?.();
       window.kimeraPlanosInit?.();
 
-      ScrollTrigger.refresh(true);
+      if (window.ScrollTrigger) {
+        ScrollTrigger.refresh(true);
+      }
     }
 
     async function bootFirstLoad() {

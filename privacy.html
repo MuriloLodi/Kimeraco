@@ -489,27 +489,37 @@
     }
 
     function initMobileNav() {
+      if (window.kimeraPlanosInit) return;
+
       const burger = document.querySelector('.nav-burger');
       const drawer = document.querySelector('.nav-drawer');
-      if (!burger || !drawer) return;
-      burger.addEventListener('click', () => {
-        const open = burger.classList.toggle('open');
+      if (!burger || !drawer || burger.dataset.navInit === '1') return;
+
+      burger.dataset.navInit = '1';
+
+      const closeDrawer = () => {
+        burger.classList.remove('open');
+        drawer.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        drawer.setAttribute('aria-hidden', 'true');
+      };
+
+      burger.addEventListener('click', e => {
+        e.stopPropagation();
+        const open = !burger.classList.contains('open');
+        burger.classList.toggle('open', open);
         drawer.classList.toggle('open', open);
-        burger.setAttribute('aria-expanded', open);
-        drawer.setAttribute('aria-hidden', !open);
+        burger.setAttribute('aria-expanded', String(open));
+        drawer.setAttribute('aria-hidden', String(!open));
       });
+
       drawer.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          burger.classList.remove('open');
-          drawer.classList.remove('open');
-          burger.setAttribute('aria-expanded', 'false');
-          drawer.setAttribute('aria-hidden', 'true');
-        });
+        a.addEventListener('click', closeDrawer);
       });
+
       document.addEventListener('click', e => {
         if (!burger.contains(e.target) && !drawer.contains(e.target)) {
-          burger.classList.remove('open');
-          drawer.classList.remove('open');
+          closeDrawer();
         }
       });
     }
@@ -886,14 +896,6 @@
       if (GLOBAL_INIT) return;
       GLOBAL_INIT = true;
 
-      gsap.registerPlugin(ScrollTrigger);
-
-      // Lenis (uma vez só)
-      lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add(t => lenis.raf(t * 1000));
-      gsap.ticker.lagSmoothing(0);
-
       // Low-end detect (uma vez só)
       const isLowEnd =
         (navigator.hardwareConcurrency || 4) < 4 ||
@@ -905,6 +907,17 @@
       initRipples();
       initWppPop();
       initMobileNav();
+
+      if (!(window.gsap && window.ScrollTrigger)) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      if (window.Lenis) {
+        lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(t => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
+      }
     }
 
     function destroyPage() {
@@ -920,8 +933,10 @@
     }
 
     function initPage() {
+      if (!(window.gsap && window.ScrollTrigger)) return;
+
       // reinicializa tudo que depende do DOM da página atual
-      initFAQ();
+      if (!window.kimeraPlanosInit) initFAQ();
       initNavActive();
       initHero();
       initVideoScrub();
@@ -932,7 +947,9 @@
       window.kimeraPortfolioInit?.();
       window.kimeraPlanosInit?.();
 
-      ScrollTrigger.refresh(true);
+      if (window.ScrollTrigger) {
+        ScrollTrigger.refresh(true);
+      }
     }
 
     async function bootFirstLoad() {

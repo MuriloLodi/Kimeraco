@@ -8,8 +8,8 @@
       category: "sites",
       title: "Site Institucional — Serviços/Oficina",
       desc: "Layout premium, SEO base, CTA forte e performance. Estrutura feita para transmitir confiança.",
-      cover: "assets/img/portfolio/site-01.jpg",
-      images: ["assets/img/portfolio/site-01.jpg", "assets/img/portfolio/site-01-2.jpg"],
+      cover: "assets/img/new.png",
+      images: ["assets/img/new.png", "assets/img/opereirao.png"],
       tags: ["Site", "SEO", "Performance"],
       chips: ["até 5 páginas", "CTA", "responsivo"],
       meta: { Entrega: "15–21 dias", Stack: "HTML/CSS/JS", Objetivo: "Autoridade" },
@@ -21,8 +21,8 @@
       category: "sites",
       title: "Landing Page — Conversão",
       desc: "Página focada em leads: oferta, prova social, formulário e rastreamento (GTM/Pixel).",
-      cover: "assets/img/portfolio/landing-01.jpg",
-      images: ["assets/img/portfolio/landing-01.jpg", "assets/img/portfolio/landing-01-2.jpg"],
+      cover: "assets/img/opereirao.png",
+      images: ["assets/img/opereirao.png", "assets/img/new.png"],
       tags: ["Landing", "Leads", "GTM/Pixel"],
       chips: ["alta conversão", "campanhas", "CTA forte"],
       meta: { Entrega: "10–14 dias", Stack: "HTML/CSS/JS", Objetivo: "Leads" },
@@ -34,8 +34,8 @@
       category: "identidade",
       title: "Identidade Visual — Logo + Kit",
       desc: "Logo, paleta, tipografia e aplicações (cartão, avatar, capa). Tudo pronto pra usar.",
-      cover: "assets/img/portfolio/idv-01.jpg",
-      images: ["assets/img/portfolio/idv-01.jpg", "assets/img/portfolio/idv-01-2.jpg"],
+      cover: "assets/img/miquimfreios.png",
+      images: ["assets/img/miquimfreios.png", "assets/img/new.png"],
       tags: ["Identidade", "Branding"],
       chips: ["logo", "paleta", "aplicações"],
       meta: { Entrega: "5–10 dias", Arquivos: "PNG/SVG/PDF", Objetivo: "Marca forte" },
@@ -47,8 +47,8 @@
       category: "criativos",
       title: "Criativos — Social/Ads",
       desc: "Artes para Instagram e anúncios com consistência de marca e foco em oferta.",
-      cover: "assets/img/portfolio/criativos-01.jpg",
-      images: ["assets/img/portfolio/criativos-01.jpg"],
+      cover: "assets/img/new.png",
+      images: ["assets/img/new.png"],
       tags: ["Criativos", "Social"],
       chips: ["feed", "story", "ads"],
       meta: { Entrega: "2–5 dias", Formatos: "1080x1350 / 1080x1920", Objetivo: "Atenção" },
@@ -56,6 +56,7 @@
     }
   ];
 
+  const PORTFOLIO_FALLBACK_IMAGE = "assets/img/new.png";
   const STATE = { currentProject: null, currentIndex: 0 };
 
   const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
@@ -98,7 +99,7 @@
             <span class="pbadge ${accent}">${badge}</span>
             ${p.highlight ? `<span class="pbadge">Destaque</span>` : ``}
           </div>
-          <img src="${p.cover}" alt="${p.title}" loading="lazy" decoding="async">
+          <img src="${p.cover}" alt="${p.title}" loading="lazy" decoding="async" data-portfolio-img="1">
           <div class="pcard-gradient" aria-hidden="true"></div>
         </div>
 
@@ -120,6 +121,36 @@
 
     const list = filter === "all" ? PROJECTS : PROJECTS.filter(p => p.category === filter);
     grid.innerHTML = list.map(cardTemplate).join("");
+    bindCardEvents(grid);
+    bindImageFallbacks(grid);
+  }
+
+  function bindImageFallbacks(scope = document) {
+    $$("img[data-portfolio-img]", scope).forEach(img => {
+      if (img.dataset.fallbackInit === "1") return;
+      img.dataset.fallbackInit = "1";
+      img.addEventListener("error", () => {
+        img.src = PORTFOLIO_FALLBACK_IMAGE;
+      }, { once: true });
+    });
+  }
+
+  function bindCardEvents(scope = document) {
+    $$(".pcard", scope).forEach(card => {
+      if (card.dataset.cardInit === "1") return;
+      card.dataset.cardInit = "1";
+      card.addEventListener("click", () => {
+        const id = card.dataset.id;
+        if (id) openModal(id);
+      });
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          const id = card.dataset.id;
+          if (id) openModal(id);
+        }
+      });
+    });
   }
 
   function setActiveFilter(key) {
@@ -145,8 +176,12 @@
     if (!STATE.currentProject) return;
 
     const imgs = STATE.currentProject.images?.length ? STATE.currentProject.images : [STATE.currentProject.cover];
-    const src = imgs[STATE.currentIndex] || imgs[0];
+    const src = imgs[STATE.currentIndex] || imgs[0] || PORTFOLIO_FALLBACK_IMAGE;
 
+    mImg.onerror = () => {
+      mImg.onerror = null;
+      mImg.src = PORTFOLIO_FALLBACK_IMAGE;
+    };
     mImg.src = src;
     mImg.alt = `${STATE.currentProject.title} — imagem ${STATE.currentIndex + 1} de ${imgs.length}`;
 
@@ -242,12 +277,6 @@
 
     // clicks (card + modal controls)
     document.addEventListener("click", (e) => {
-      const card = e.target.closest?.(".pcard");
-      if (card?.dataset?.id) {
-        openModal(card.dataset.id);
-        return;
-      }
-
       const dot = e.target.closest?.(".pdot");
       if (dot && dot.dataset?.dot != null) {
         STATE.currentIndex = Number(dot.dataset.dot || 0);
