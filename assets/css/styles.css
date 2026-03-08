@@ -821,9 +821,9 @@
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-16);
-  align-items: start;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-24);
+  align-items: stretch;
 }
 
 .pricing-card {
@@ -834,6 +834,8 @@
   transition: border-color var(--tr-med), box-shadow var(--tr-slow), transform var(--tr-slow);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .pricing-card::before {
@@ -886,7 +888,7 @@
 }
 
 .pricing-name {
-  font-size: 1.1rem;
+  font-size: 1.22rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: var(--sp-8);
@@ -913,28 +915,29 @@
   font-family: var(--font-mono);
   font-size: var(--t-xs);
   color: var(--c-white-45);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
   margin-bottom: var(--sp-32);
 }
 
 .pricing-divider {
   height: 1px;
   background: var(--c-border);
-  margin-bottom: var(--sp-32);
+  margin-bottom: var(--sp-24);
 }
 
 .pricing-features {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-12);
-  margin-bottom: var(--sp-40);
+  gap: var(--sp-10);
+  margin-bottom: var(--sp-24);
 }
 
 .pricing-feature {
   display: flex;
   align-items: flex-start;
   gap: var(--sp-12);
-  font-size: var(--t-sm);
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--c-white-72);
 }
 
@@ -960,6 +963,7 @@
 .pricing-btn {
   width: 100%;
   justify-content: center;
+  margin-top: auto;
 }
 
 .pricing-recurrence {
@@ -984,7 +988,7 @@
   color: var(--c-accent);
 }
 
-@media (max-width:1100px) {
+@media (max-width:1200px) {
   .pricing-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -994,7 +998,7 @@
   }
 }
 
-@media (max-width:600px) {
+@media (max-width:760px) {
   .pricing-grid {
     grid-template-columns: 1fr;
   }
@@ -2481,25 +2485,25 @@ body {
 }
 
 /* Pricing refinements */
-.pricing-top{ margin-bottom: var(--sp-16); }
+.pricing-top{ margin-bottom: var(--sp-20); }
 .pricing-kicker{
   margin-top: 6px;
   color: var(--c-white-45);
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 14px;
+  line-height: 1.55;
 }
 .pricing-metrics{
   display:flex;
   flex-wrap:wrap;
-  gap: 8px;
-  margin: var(--sp-16) 0 var(--sp-12);
+  gap: 10px;
+  margin: var(--sp-20) 0 var(--sp-16);
 }
 .metric{
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: .08em;
+  font-size: 11px;
+  letter-spacing: .03em;
   text-transform: uppercase;
-  padding: 6px 10px;
+  padding: 7px 12px;
   border-radius: var(--r-pill);
   border: 1px solid var(--c-border);
   background: rgba(255,255,255,0.03);

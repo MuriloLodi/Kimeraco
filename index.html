@@ -1293,6 +1293,36 @@
       }
     }
 
+    function ensureIndexFaqFirstOpen() {
+      const path = location.pathname.toLowerCase();
+      const isIndex = path === '/' || path.endsWith('/index.html');
+      if (!isIndex) return;
+
+      const root = document.getElementById('faq');
+      const first = root?.querySelector('.faq-list .faq-item');
+      if (!first) return;
+
+      const question = first.querySelector('.faq-question');
+      const answer = first.querySelector('.faq-answer');
+      if (!question || !answer) return;
+
+      root.querySelectorAll('.faq-item').forEach(item => {
+        if (item === first) return;
+        item.classList.remove('open');
+        item.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+        const otherAnswer = item.querySelector('.faq-answer');
+        if (otherAnswer) {
+          otherAnswer.style.maxHeight = '0px';
+          otherAnswer.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      first.classList.add('open');
+      question.setAttribute('aria-expanded', 'true');
+      answer.setAttribute('aria-hidden', 'false');
+      answer.style.maxHeight = `${answer.scrollHeight}px`;
+    }
+
     function initPage() {
       if (!(window.gsap && window.ScrollTrigger)) return;
 
@@ -1307,6 +1337,7 @@
       initInteractions();
       window.kimeraPortfolioInit?.();
       window.kimeraPlanosInit?.();
+      ensureIndexFaqFirstOpen();
 
       if (window.ScrollTrigger) {
         ScrollTrigger.refresh(true);
