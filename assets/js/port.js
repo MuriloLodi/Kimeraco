@@ -4,55 +4,69 @@
 
   const PROJECTS = [
     {
-      id: "site-01",
+      id: "miquim-freios",
       category: "sites",
-      title: "Site Institucional — Serviços/Oficina",
-      desc: "Layout premium, SEO base, CTA forte e performance. Estrutura feita para transmitir confiança.",
-      cover: "assets/img/new.png",
-      images: ["assets/img/new.png", "assets/img/opereirao.png"],
-      tags: ["Site", "SEO", "Performance"],
-      chips: ["até 5 páginas", "CTA", "responsivo"],
-      meta: { Entrega: "15–21 dias", Stack: "HTML/CSS/JS", Objetivo: "Autoridade" },
-      link: "",
-      highlight: true
-    },
-    {
-      id: "site-02",
-      category: "sites",
-      title: "Landing Page — Conversão",
-      desc: "Página focada em leads: oferta, prova social, formulário e rastreamento (GTM/Pixel).",
-      cover: "assets/img/opereirao.png",
-      images: ["assets/img/opereirao.png", "assets/img/new.png"],
-      tags: ["Landing", "Leads", "GTM/Pixel"],
-      chips: ["alta conversão", "campanhas", "CTA forte"],
-      meta: { Entrega: "10–14 dias", Stack: "HTML/CSS/JS", Objetivo: "Leads" },
-      link: "",
-      highlight: true
-    },
-    {
-      id: "idv-01",
-      category: "identidade",
-      title: "Identidade Visual — Logo + Kit",
-      desc: "Logo, paleta, tipografia e aplicações (cartão, avatar, capa). Tudo pronto pra usar.",
+      title: "Miquim Freios",
+      desc: "Site focado em autoridade local, clareza de serviços e conversão em pedido de orçamento.",
       cover: "assets/img/miquimfreios.png",
-      images: ["assets/img/miquimfreios.png", "assets/img/new.png"],
-      tags: ["Identidade", "Branding"],
-      chips: ["logo", "paleta", "aplicações"],
-      meta: { Entrega: "5–10 dias", Arquivos: "PNG/SVG/PDF", Objetivo: "Marca forte" },
+      images: ["assets/img/miquimfreios.png"],
+      tags: ["Site", "Oficina"],
+      chips: ["site profissional", "SEO base", "CTA forte"],
+      meta: { Entrega: "15-21 dias", Stack: "HTML/CSS/JS", Objetivo: "Orçamentos" },
       link: "",
       highlight: true
     },
     {
-      id: "cri-01",
-      category: "criativos",
-      title: "Criativos — Social/Ads",
-      desc: "Artes para Instagram e anúncios com consistência de marca e foco em oferta.",
+      id: "o-pereirao",
+      category: "sites",
+      title: "O Pereirão",
+      desc: "Site com foco em oferta, prova visual e caminho direto para contato no WhatsApp.",
+      cover: "assets/img/opereirao.png",
+      images: ["assets/img/opereirao.png"],
+      tags: ["Site", "Conversão"],
+      chips: ["campanha", "oferta", "WhatsApp"],
+      meta: { Entrega: "10-14 dias", Stack: "HTML/CSS/JS", Objetivo: "Leads" },
+      link: "",
+      highlight: true
+    },
+    {
+      id: "new-tech-moveis",
+      category: "sites",
+      title: "New Tech Móveis",
+      desc: "Site premium para apresentar serviços, transmitir confiança e facilitar negociação.",
       cover: "assets/img/new.png",
       images: ["assets/img/new.png"],
+      tags: ["Site", "Institucional"],
+      chips: ["layout premium", "responsivo", "performance"],
+      meta: { Entrega: "15-21 dias", Stack: "HTML/CSS/JS", Objetivo: "Autoridade" },
+      link: "",
+      highlight: true
+    },
+    {
+      id: "identidade-exemplo",
+      category: "identidade",
+      title: "Identidade Visual — Projeto Exemplo",
+      desc: "Placeholder para você substituir com o case real de identidade visual.",
+      cover: "assets/img/new.png",
+      images: ["assets/img/new.png"],
+      tags: ["Identidade", "Branding"],
+      chips: ["logo", "paleta", "tipografia"],
+      meta: { Entrega: "5-10 dias", Arquivos: "PNG/SVG/PDF", Objetivo: "Marca forte" },
+      link: "",
+      highlight: false
+    },
+    {
+      id: "criativos-exemplo",
+      category: "criativos",
+      title: "Criativos — Projeto Exemplo",
+      desc: "Placeholder para você substituir com o case real de criativos.",
+      cover: "assets/img/opereirao.png",
+      images: ["assets/img/opereirao.png"],
       tags: ["Criativos", "Social"],
       chips: ["feed", "story", "ads"],
-      meta: { Entrega: "2–5 dias", Formatos: "1080x1350 / 1080x1920", Objetivo: "Atenção" },
-      link: ""
+      meta: { Entrega: "2-5 dias", Formatos: "1080x1350 / 1080x1920", Objetivo: "Atenção" },
+      link: "",
+      highlight: false
     }
   ];
 
@@ -170,6 +184,44 @@
     };
   }
 
+  function ensurePortfolioModal() {
+    const existing = document.getElementById("portfolioModal");
+    if (existing) return existing;
+
+    const host = document.getElementById("swup") || document.body;
+    const wrap = document.createElement("div");
+    wrap.innerHTML = `
+      <div id="portfolioModal" class="pmodal" aria-hidden="true">
+        <div class="pmodal-backdrop" data-close="1" aria-hidden="true"></div>
+        <div class="pmodal-dialog" role="dialog" aria-modal="true" aria-label="Detalhes do projeto">
+          <button class="pmodal-close" type="button" data-close="1" aria-label="Fechar">&times;</button>
+          <div class="pmodal-body">
+            <div class="pmodal-media">
+              <img id="pmodalImage" src="" alt="" loading="eager" decoding="async" />
+              <button class="pmodal-nav prev" type="button" aria-label="Imagem anterior">&#x2039;</button>
+              <button class="pmodal-nav next" type="button" aria-label="Próxima imagem">&#x203A;</button>
+              <div id="pmodalDots" class="pmodal-dots" aria-label="Navegação de imagens"></div>
+            </div>
+            <div class="pmodal-content">
+              <div id="pmodalTags" class="pmodal-tags"></div>
+              <div id="pmodalTitle" class="pmodal-title">Projeto</div>
+              <div id="pmodalDesc" class="pmodal-desc"></div>
+              <div id="pmodalMeta" class="pmodal-meta"></div>
+              <div id="pmodalActions" class="pmodal-actions"></div>
+              <div class="pmodal-note">
+                * Imagens são exemplos de apresentação. O seu projeto é construído sob medida para seu nicho e objetivo.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const modal = wrap.firstElementChild;
+    if (modal) host.appendChild(modal);
+    return document.getElementById("portfolioModal");
+  }
+
   function renderModalImage() {
     const { modal, mImg, mDots } = getModalEls();
     if (!modal || !mImg) return;
@@ -200,6 +252,7 @@
   }
 
   function openModal(projectId) {
+    ensurePortfolioModal();
     const els = getModalEls();
     if (!els.modal) return; // modal precisa existir no DOM
 
@@ -210,6 +263,7 @@
 
     els.modal.setAttribute("aria-hidden", "false");
     document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
 
     if (els.mTitle) els.mTitle.textContent = STATE.currentProject.title;
     if (els.mDesc) els.mDesc.textContent = STATE.currentProject.desc;
@@ -254,6 +308,7 @@
     if (!modal) return;
     modal.setAttribute("aria-hidden", "true");
     document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
     STATE.currentProject = null;
   }
 
@@ -277,6 +332,12 @@
 
     // clicks (card + modal controls)
     document.addEventListener("click", (e) => {
+      const card = e.target.closest?.(".pcard");
+      if (card?.dataset?.id) {
+        openModal(card.dataset.id);
+        return;
+      }
+
       const dot = e.target.closest?.(".pdot");
       if (dot && dot.dataset?.dot != null) {
         STATE.currentIndex = Number(dot.dataset.dot || 0);
@@ -294,7 +355,9 @@
       const { modal } = getModalEls();
       const open = modal?.getAttribute("aria-hidden") === "false";
 
-      if (e.key === "Enter" && document.activeElement?.classList?.contains("pcard")) {
+      const focusedCard = document.activeElement?.classList?.contains("pcard");
+      if ((e.key === "Enter" || e.key === " " || e.code === "Space") && focusedCard) {
+        e.preventDefault();
         const id = document.activeElement.dataset.id;
         if (id) openModal(id);
       }
@@ -308,20 +371,20 @@
 
   function initPortfolio() {
     initYear();
-    bindGlobalOnce();
 
     const grid = document.getElementById("portfolio-grid");
     if (!grid) return;
 
-    // evita re-init duplicado no mesmo DOM
-    if (grid.dataset.kimeraInit === "1") return;
-    grid.dataset.kimeraInit = "1";
+    ensurePortfolioModal();
+    bindGlobalOnce();
 
     updateCounts();
     renderGrid("all");
     setActiveFilter("all");
 
     $$(".portfolio-filter").forEach(btn => {
+      if (btn.dataset.filterInit === "1") return;
+      btn.dataset.filterInit = "1";
       btn.addEventListener("click", () => {
         const key = btn.dataset.filter || "all";
         setActiveFilter(key);
