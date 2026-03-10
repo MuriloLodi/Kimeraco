@@ -237,14 +237,13 @@ export function initMetodoAnim() {
     });
   }
 
-  // Step activation via scroll
-  const stepData = [
-    { icon: '🔍', title: 'Diagnóstico', sub: 'Entendemos seu negócio, seu mercado e seus objetivos em profundidade.' },
-    { icon: '✏️', title: 'Estratégia', sub: 'Definimos a melhor solução visual e digital para o seu perfil.' },
-    { icon: '🎨', title: 'Design', sub: 'Criamos a identidade, o layout e todos os elementos visuais.' },
-    { icon: '⚡', title: 'Desenvolvimento', sub: 'Construímos o site otimizado, rápido e pronto pra converter.' },
-    { icon: '🚀', title: 'Entrega', sub: 'Publicamos, configuramos o e-mail e entregamos tudo no prazo.' },
-  ];
+      const stepData = [
+        { icon: '01', img: './assets/img/Diagnostico.png', title: 'Diagnóstico', sub: 'Entendemos seu negócio, o que você vende e quem você quer atrair. Analisamos concorrentes e definimos o objetivo do site (mais orçamento, mais leads ou mais vendas).' },
+        { icon: '02', img: './assets/img/2site.png', title: 'Estratégia', sub: 'Montamos a estrutura certa: páginas/sections, mensagem principal e CTAs pra guiar o visitante até o contato no WhatsApp.' },
+        { icon: '03', img: './assets/img/3site.png', title: 'Design', sub: 'Fazemos a confecção da identidade visual da sua empresa com logo, cores e tipografia para deixar a marca mais profissional e consistente. Melhoramos a comunicação visual nas redes sociais com artes que seguem o mesmo padrão da marca, deixando seu conteúdo mais claro, bonito e com cara de empresa grande.' },
+        { icon: '04', img: './assets/img/4site.png', title: 'Desenvolvimento', sub: 'Transformamos o design em um site rápido, responsivo e otimizado. Já deixamos pronto pra ranquear no Google e converter visitantes em clientes.' },
+        { icon: '05', img: './assets/img/5site.png', title: 'Entrega', sub: 'Publicamos o site no ar, configuramos domínio, hospedagem e e-mail profissional. Você recebe o site pronto pra usar e com orientação pra não ficar perdido.' },
+      ];
 
   const iconEl = document.querySelector('.metodo-step-icon-lg');
   const titleEl = document.querySelector('.metodo-step-title-lg');

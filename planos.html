@@ -59,7 +59,7 @@
         <div class="section-header section-center">
           <h2 class="t-h2" id="planos-heading">Planos para toda ambição</h2>
           <p class="section-subtitle">
-            Três caminhos objetivos para posicionar sua empresa com mais autoridade e confiança no digital.
+            Quatro caminhos objetivos para posicionar sua empresa com mais autoridade e confiança no digital.
           </p>
         </div>
 
@@ -165,6 +165,38 @@
               href="https://wa.me/5545999997579?text=Oi%20Kimera!%20Quero%20entender%20o%20plano%20Premium.%20Pode%20me%20explicar%20o%20escopo%3F"
               target="_blank" rel="noopener">
               Falar com a equipe <span class="arrow">→</span>
+            </a>
+          </article>
+
+          <article class="pricing-card" data-plan="manutencao">
+            <div class="pricing-top">
+              <div class="pricing-name">Manutenção Mensal</div>
+              <div class="pricing-kicker">Ideal para manter seu site seguro, atualizado e performando bem após a entrega do projeto.</div>
+            </div>
+
+            <div class="pricing-price"><span class="currency">R$</span>197</div>
+            <div class="pricing-period">por mês</div>
+
+            <div class="pricing-metrics">
+              <span class="metric">atualizações</span>
+              <span class="metric">backup</span>
+              <span class="metric">suporte técnico</span>
+              <span class="metric">correções</span>
+            </div>
+
+            <div class="pricing-divider"></div>
+
+            <ul class="pricing-features">
+              <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Atualizações de conteúdo</li>
+              <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Backup recorrente</li>
+              <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Correções pontuais</li>
+              <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Suporte técnico</li>
+            </ul>
+
+            <a class="btn btn-secondary pricing-btn btn-arrow"
+              href="https://wa.me/5545999997579?text=Oi%20Kimera!%20Quero%20saber%20mais%20sobre%20o%20plano%20de%20manuten%C3%A7%C3%A3o%20mensal."
+              target="_blank" rel="noopener">
+              Quero manutenção <span class="arrow">→</span>
             </a>
           </article>
         </div>
@@ -342,9 +374,9 @@
             </div>
           </div>
 
-          <aside class="faq-media" aria-hidden="true">
+         <!-- <aside class="faq-media" aria-hidden="true">
             <img src="assets/img/planos-side.jpg" alt="" loading="lazy" decoding="async">
-          </aside>
+          </aside> -->
         </div>
       </div>
     </section>
@@ -443,11 +475,10 @@
           <div class="footer-col">
             <div class="footer-col-title">Serviços</div>
             <ul>
-              <li><a href="#value">Site Institucional</a></li>
-              <li><a href="#value">Landing Page</a></li>
-              <li><a href="#value">Identidade Visual</a></li>
-              <li><a href="#value">E-mail Profissional</a></li>
-              <li><a href="#value">Manutenção</a></li>
+              <li><a href="servicos.html#servicos">Site profissional</a></li>
+              <li><a href="servicos.html#servicos">Identidade Visual</a></li>
+              <li><a href="servicos.html#servicos">E-mail Profissional</a></li>
+              <li><a href="planos.html#planos">Manutenção</a></li>
             </ul>
           </div>
 
@@ -939,10 +970,6 @@
         scrollTrigger: { trigger: 'footer', start: 'top 90%' }
       });
 
-      gsap.from('.pricing-recurrence', {
-        opacity: 0, y: 30, duration: 0.8, ease: 'expo.out',
-        scrollTrigger: { trigger: '.pricing-recurrence', start: 'top 90%' }
-      });
     }
 
     /* ──── COUNTERS ───────────────────────────────────────────────── */
@@ -1001,11 +1028,11 @@
       const isImagePreview = iconEl?.tagName === 'IMG';
 
       const stepData = [
-        { icon: '01', img: './assets/img/miquimfreios.png', title: 'Diagnostico', sub: 'Entendemos seu negocio, seu mercado e seus objetivos em profundidade.' },
-        { icon: '02', img: './assets/img/opereirao.png', title: 'Estrategia', sub: 'Definimos arquitetura, tom de voz, CTAs e a jornada ideal de conversao.' },
-        { icon: '03', img: './assets/img/new.png', title: 'Design', sub: 'Criamos identidade visual e layout no Figma. Voce aprova antes do codigo.' },
-        { icon: '04', img: './assets/img/miquimfreios.png', title: 'Desenvolvimento', sub: 'Codigo limpo, responsivo e otimizado para conversao e velocidade.' },
-        { icon: '05', img: './assets/img/opereirao.png', title: 'Entrega', sub: 'Publicamos, configuramos o e-mail e entregamos com treinamento incluso.' },
+        { icon: '01', img: './assets/img/Diagnostico.png', title: 'Diagnóstico', sub: 'Entendemos seu negócio, o que você vende e quem você quer atrair. Analisamos concorrentes e definimos o objetivo do site (mais orçamento, mais leads ou mais vendas).' },
+        { icon: '02', img: './assets/img/2site.png', title: 'Estratégia', sub: 'Montamos a estrutura certa: páginas/sections, mensagem principal e CTAs pra guiar o visitante até o contato no WhatsApp.' },
+        { icon: '03', img: './assets/img/3site.png', title: 'Design', sub: 'Fazemos a confecção da identidade visual da sua empresa com logo, cores e tipografia para deixar a marca mais profissional e consistente. Melhoramos a comunicação visual nas redes sociais com artes que seguem o mesmo padrão da marca, deixando seu conteúdo mais claro, bonito e com cara de empresa grande.' },
+        { icon: '04', img: './assets/img/4site.png', title: 'Desenvolvimento', sub: 'Transformamos o design em um site rápido, responsivo e otimizado. Já deixamos pronto pra ranquear no Google e converter visitantes em clientes.' },
+        { icon: '05', img: './assets/img/5site.png', title: 'Entrega', sub: 'Publicamos o site no ar, configuramos domínio, hospedagem e e-mail profissional. Você recebe o site pronto pra usar e com orientação pra não ficar perdido.' },
       ];
 
       function applyStepContent(d) {
@@ -1186,4 +1213,3 @@
 </body>
 
 </html>
-

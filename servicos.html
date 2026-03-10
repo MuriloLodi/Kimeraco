@@ -710,10 +710,10 @@
           <div class="footer-col">
             <div class="footer-col-title">Serviços</div>
             <ul>
-              <li><a href="#value">Site Profissional</a></li>
-              <li><a href="#value">Identidade Visual</a></li>
-              <li><a href="#value">E-mail Profissional</a></li>
-              <li><a href="#value">Manutenção</a></li>
+              <li><a href="servicos.html#servicos">Site profissional</a></li>
+              <li><a href="servicos.html#servicos">Identidade Visual</a></li>
+              <li><a href="servicos.html#servicos">E-mail Profissional</a></li>
+              <li><a href="planos.html#planos">Manutenção</a></li>
             </ul>
           </div>
 
@@ -748,8 +748,6 @@
       </div>
     </footer>
 
-  </main>
-
   <!-- ─── WhatsApp Float (opcional) ───────────────────────────── -->
   <!-- TROQUE o número abaixo -->
   <a class="wpp-float"
@@ -762,6 +760,8 @@
         d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.843L0 24l6.34-1.498A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.79 9.79 0 01-5.006-1.374l-.36-.214-3.727.88.942-3.636-.234-.374A9.761 9.761 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z" />
     </svg>
   </a>
+
+  </main>
 
 
   <!-- ─── SCRIPTS ──────────────────────────────────────────────── -->
@@ -1280,13 +1280,12 @@
       const isImagePreview = iconEl?.tagName === 'IMG';
 
       const stepData = [
-        { icon: '01', img: './assets/img/diagnostico.png', title: 'Diagnóstico', sub: 'Entendemos seu negócio, o que você vende e quem você quer atrair. Analisamos concorrentes e definimos o objetivo do site (mais orçamento, mais leads ou mais vendas).' },
-        { icon: '02', img: './assets/img/opereirao.png', title: 'Estratégia', sub: 'Montamos a estrutura certa: páginas/sections, mensagem principal e CTAs pra guiar o visitante até o contato no WhatsApp.' },
-        { icon: '03', img: './assets/img/new.png', title: 'Design', sub: 'Fazemos a confecção da identidade visual da sua empresa com logo, cores e tipografia para deixar a marca mais profissional e consistente. Melhoramos a comunicação visual nas redes sociais com artes que seguem o mesmo padrão da marca, deixando seu conteúdo mais claro, bonito e com cara de empresa grande.' },
-        { icon: '04', img: './assets/img/miquimfreios.png', title: 'Desenvolvimento', sub: 'Transformamos o design em um site rápido, responsivo e otimizado. Já deixamos pronto pra ranquear no Google e converter visitantes em clientes.' },
-        { icon: '05', img: './assets/img/opereirao.png', title: 'Entrega', sub: 'Publicamos o site no ar, configuramos domínio, hospedagem e e-mail profissional. Você recebe o site pronto pra usar e com orientação pra não ficar perdido.' },
+        { icon: '01', img: './assets/img/Diagnostico.png', title: 'Diagnóstico', sub: 'Entendemos seu negócio, o que você vende e quem você quer atrair. Analisamos concorrentes e definimos o objetivo do site (mais orçamento, mais leads ou mais vendas).' },
+        { icon: '02', img: './assets/img/2site.png', title: 'Estratégia', sub: 'Montamos a estrutura certa: páginas/sections, mensagem principal e CTAs pra guiar o visitante até o contato no WhatsApp.' },
+        { icon: '03', img: './assets/img/3site.png', title: 'Design', sub: 'Fazemos a confecção da identidade visual da sua empresa com logo, cores e tipografia para deixar a marca mais profissional e consistente. Melhoramos a comunicação visual nas redes sociais com artes que seguem o mesmo padrão da marca, deixando seu conteúdo mais claro, bonito e com cara de empresa grande.' },
+        { icon: '04', img: './assets/img/4site.png', title: 'Desenvolvimento', sub: 'Transformamos o design em um site rápido, responsivo e otimizado. Já deixamos pronto pra ranquear no Google e converter visitantes em clientes.' },
+        { icon: '05', img: './assets/img/5site.png', title: 'Entrega', sub: 'Publicamos o site no ar, configuramos domínio, hospedagem e e-mail profissional. Você recebe o site pronto pra usar e com orientação pra não ficar perdido.' },
       ];
-
       function applyStepContent(d) {
         if (iconEl) {
           if (isImagePreview && d.img) iconEl.src = d.img;
@@ -1464,4 +1463,3 @@
 
 </body>
 </html>
-

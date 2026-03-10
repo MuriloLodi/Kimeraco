@@ -852,7 +852,7 @@
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--sp-24);
   align-items: stretch;
 }
@@ -995,28 +995,6 @@
   width: 100%;
   justify-content: center;
   margin-top: auto;
-}
-
-.pricing-recurrence {
-  text-align: center;
-  margin-top: var(--sp-48);
-  padding: var(--sp-32);
-  background: var(--c-white-03);
-  border: 1px solid var(--c-border);
-  border-radius: var(--r-xl);
-}
-
-.pricing-recurrence-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: var(--sp-8);
-}
-
-.pricing-recurrence-price {
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: var(--c-accent);
 }
 
 @media (max-width:1200px) {
@@ -2547,20 +2525,6 @@ body {
   line-height: 1.5;
 }
 
-/* Recorrência refinada */
-.pricing-recurrence-sub{
-  color: var(--c-white-45);
-  font-size: var(--t-sm);
-  margin-top: var(--sp-12);
-}
-.pricing-recurrence-actions{
-  display:flex;
-  gap: var(--sp-12);
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-top: var(--sp-20);
-}
-
 /* Compare */
 .compare-toolbar{
   display:flex;
@@ -3092,7 +3056,7 @@ body {
 .pmodal-media img{
   width:100%;
   height:100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: top center;
   display:block;
   background: #060606;
