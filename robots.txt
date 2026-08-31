@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /wpp/
+Disallow: /design_system.html
+
+Sitemap: https://kimeraco.com.br/sitemap.xml
