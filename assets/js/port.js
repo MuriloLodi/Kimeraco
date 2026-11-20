@@ -8,8 +8,8 @@
       category: "sites",
       title: "Miquim Freios",
       desc: "Site focado em autoridade local, clareza de serviços e conversão em pedido de orçamento.",
-      cover: "assets/img/miquimfreios.png",
-      images: ["assets/img/miquimfreios.png"],
+      cover: "assets/img/miquimfreios-capa.webp",
+      images: ["assets/img/miquimfreios.webp"],
       tags: ["Site", "Oficina"],
       chips: ["site profissional", "SEO base", "CTA forte"],
       meta: { Entrega: "15-21 dias", Stack: "HTML/CSS/JS", Objetivo: "Orçamentos" },
@@ -21,8 +21,8 @@
       category: "sites",
       title: "O Pereirão",
       desc: "Site com foco em oferta, prova visual e caminho direto para contato no WhatsApp.",
-      cover: "assets/img/opereirao.png",
-      images: ["assets/img/opereirao.png"],
+      cover: "assets/img/opereirao-capa.webp",
+      images: ["assets/img/opereirao.webp"],
       tags: ["Site", "Conversão"],
       chips: ["campanha", "oferta", "WhatsApp"],
       meta: { Entrega: "10-14 dias", Stack: "HTML/CSS/JS", Objetivo: "Leads" },
@@ -34,8 +34,8 @@
       category: "sites",
       title: "New Tech Móveis",
       desc: "Site premium para apresentar serviços, transmitir confiança e facilitar negociação.",
-      cover: "assets/img/new.png",
-      images: ["assets/img/new.png"],
+      cover: "assets/img/new-capa.webp",
+      images: ["assets/img/new.webp"],
       tags: ["Site", "Institucional"],
       chips: ["layout premium", "responsivo", "performance"],
       meta: { Entrega: "15-21 dias", Stack: "HTML/CSS/JS", Objetivo: "Autoridade" },
@@ -47,8 +47,8 @@
       category: "criativos",
       title: "Criativos para Tráfego",
       desc: "Variação de criativos para campanhas em social media, com foco em impacto visual e geração de cliques.",
-      cover: "assets/img/TrafegoCapa.png",
-      images: ["assets/img/TrafegoCapa.png", "assets/img/CapaBitcoin.png"],
+      cover: "assets/img/TrafegoCapa.webp",
+      images: ["assets/img/TrafegoCapa.webp", "assets/img/CapaBitcoin.webp"],
       tags: ["Criativos", "Social Media"],
       chips: ["feed", "story", "ads"],
       meta: { Entrega: "2-5 dias", Formatos: "1080x1350 / 1080x1920", Objetivo: "Mais cliques e conversão" },
@@ -60,8 +60,8 @@
       category: "criativos",
       title: "Criativos para Tráfego",
       desc: "Peças para feed, stories e anúncios com foco em captar atenção rápida e aumentar cliques nas campanhas.",
-      cover: "assets/img/CapaBitcoin.png",
-      images: ["assets/img/CapaBitcoin.png", "assets/img/TrafegoCapa.png"],
+      cover: "assets/img/CapaBitcoin.webp",
+      images: ["assets/img/CapaBitcoin.webp", "assets/img/TrafegoCapa.webp"],
       tags: ["Criativos", "Social Media"],
       chips: ["feed", "story", "ads"],
       meta: { Entrega: "2-5 dias", Formatos: "1080x1350 / 1080x1920", Objetivo: "Mais cliques e conversão" },
@@ -70,7 +70,7 @@
     }
   ];
 
-  const PORTFOLIO_FALLBACK_IMAGE = "assets/img/new.png";
+  const PORTFOLIO_FALLBACK_IMAGE = "assets/img/new.webp";
   const STATE = { currentProject: null, currentIndex: 0 };
 
   const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
