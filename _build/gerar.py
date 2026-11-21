@@ -76,8 +76,11 @@ FOOTER = """  <footer role="contentinfo">
           <div class="footer-col-title">Empresa</div>
           <ul>
             <li><a href="/criacao-de-sites/">Atendimento no Brasil</a></li>
+            <li><a href="/segmentos/">Sites por segmento</a></li>
+            <li><a href="/quanto-custa-um-site/">Quanto custa um site</a></li>
+            <li><a href="/freelancer-de-sites/">Freelancer de sites</a></li>
             <li><a href="/portfolio.html">Portfólio</a></li>
-            <li><a href="/planos.html">Planos e preços</a></li>
+            <li><a href="/planos.html">Planos</a></li>
             <li><a href="/servicos.html">Todos os serviços</a></li>
           </ul>
         </div>
@@ -207,7 +210,7 @@ def page(path, title, description, body, graph, og_image="/assets/img/og-kimera.
 
 
 def acoes(msg, secundario=None):
-    sec = secundario or ('/planos.html', 'Ver planos e preços')
+    sec = secundario or ('/planos.html', 'Ver planos')
     return f"""        <div class="kp-actions">
           <a href="{E(wpp(msg))}" class="btn btn-primary btn-lg btn-arrow" target="_blank" rel="noopener noreferrer">Pedir orçamento no WhatsApp <span class="arrow">→</span></a>
           <a href="{sec[0]}" class="btn btn-secondary btn-lg">{E(sec[1])}</a>
@@ -315,7 +318,7 @@ def gerar_servico(s):
     <section class="kp-section" aria-labelledby="preco-t">
       <div class="container kp-split">
         <div>
-          <h2 class="kp-h2" id="preco-t">Quanto custa</h2>
+          <h2 class="kp-h2" id="preco-t">Como funciona o orçamento</h2>
           <div class="kp-prose" style="margin-top:var(--sp-24)"><p>{s['preco_texto']}</p></div>
         </div>
         <div class="kp-price">
@@ -419,7 +422,7 @@ def gerar_hub(regioes_html=""):
         <div class="kp-prose">
           <p>Site não precisa de visita técnica. O que define um bom projeto é entender o seu negócio e o seu cliente, e isso se faz numa boa conversa, não numa sala de reunião. Em agência grande é comum o projeto passar por várias mãos até chegar em quem executa. Aqui você fala sempre com quem está fazendo.</p>
           <p>O site aparece para quem está perto de você porque o conteúdo fala da sua região, dos seus serviços e do seu endereço, e porque o seu <strong>Perfil da Empresa no Google</strong> está bem cuidado. Onde o desenvolvedor mora não muda nada disso. A gente ajusta título, texto e dados estruturados para a sua cidade e orienta como cuidar do Perfil da Empresa.</p>
-          <p>Os <a href="/planos.html">preços são os mesmos para qualquer estado</a>, com valor fechado antes de começar.</p>
+          <p>O orçamento segue o mesmo critério para qualquer estado, com <a href="/planos.html">escopo</a>, prazo e valor fechados antes de começar.</p>
         </div>
       </div>
     </section>
@@ -458,8 +461,7 @@ def gerar_hub(regioes_html=""):
          "inLanguage": "pt-BR", "isPartOf": {"@id": SITE + "/#website"}, "about": org_ref()},
         breadcrumb_schema(trail),
         {"@type": "Service", "name": "Criação de sites", "serviceType": "Criação de sites", "provider": org_ref(),
-         "areaServed": {"@type": "Country", "name": "Brasil"}, "url": SITE + path,
-         "offers": {"@type": "Offer", "priceCurrency": "BRL", "price": "1297", "url": SITE + "/planos.html"}},
+         "areaServed": {"@type": "Country", "name": "Brasil"}, "url": SITE + path},
         faq_schema(HUB_FAQ),
     ]
     return page(path, title, desc, body, graph, wpp_msg=msg)
@@ -515,6 +517,8 @@ def main():
         gerados += gerar_regioes(sys.modules[__name__])
     except ImportError:
         pass
+    from extras_build import gerar_extras
+    gerados += gerar_extras(sys.modules[__name__])
     escrever_sitemap([p for _, p in gerados])
     print(f"{len(gerados)} páginas geradas.")
 

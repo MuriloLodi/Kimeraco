@@ -46,7 +46,7 @@ def _prose(ps):
     return "\n".join(f"          <p>{p}</p>" for p in ps)
 
 
-FAQ_GERAL_PRECO = ("Quanto custa um site profissional?", "Os planos vão de R$ 1.297 (site de até 3 páginas) a R$ 4.997 (site completo com identidade visual premium), com pagamento de 50% na entrada e 50% na entrega. Loja virtual tem orçamento próprio.")
+FAQ_GERAL_PRECO = ("Como funciona o orçamento?", "Você conta pelo WhatsApp o que sua empresa faz e o que precisa no site. A partir disso vem uma proposta com escopo, prazo e valor fechado. O pagamento é 50% na entrada e 50% na entrega.")
 FAQ_GERAL_PRAZO = ("Em quanto tempo o site fica pronto?", "De 15 a 30 dias depois da aprovação do briefing, conforme o plano. O que mais influencia o prazo é a entrega de textos e fotos.")
 
 
@@ -88,7 +88,7 @@ def gerar_estado(g, e):
           <div class="kp-fact"><dt>Capital</dt><dd>{E(e['capital'])}</dd></div>
           <div class="kp-fact"><dt>Fuso</dt><dd>{'Brasília' if e['fuso'] == 0 else f"Brasília {e['fuso']}h"}</dd></div>
           <div class="kp-fact"><dt>Atendimento</dt><dd>{'Presencial no Oeste e online' if e['uf'] == 'PR' else '100% online'}</dd></div>
-          <div class="kp-fact"><dt>Planos</dt><dd>a partir de R$ 1.297</dd></div>
+          <div class="kp-fact"><dt>Orçamento</dt><dd>sem compromisso</dd></div>
         </dl>
       </div>
     </section>
@@ -165,8 +165,7 @@ def gerar_estado(g, e):
          "inLanguage": "pt-BR", "isPartOf": {"@id": g.SITE + "/#website"}},
         g.breadcrumb_schema(trail),
         {"@type": "Service", "name": f"Criação de sites {onde}", "serviceType": "Criação de sites",
-         "provider": g.org_ref(), "areaServed": area, "url": g.SITE + path,
-         "offers": {"@type": "Offer", "priceCurrency": "BRL", "price": "1297", "url": g.SITE + "/planos.html"}},
+         "provider": g.org_ref(), "areaServed": area, "url": g.SITE + path},
         g.faq_schema(faq),
     ]
     return g.page(path, title, e["desc"], body, graph, wpp_msg=msg)
@@ -199,7 +198,7 @@ def gerar_cidade(g, c):
 {g.acoes(msg, ('/portfolio.html', 'Ver portfólio'))}
         <ul class="kp-badges">
           <li>{E(atendimento)}</li>
-          <li>A partir de R$ 1.297</li>
+          <li>Orçamento pelo WhatsApp</li>
           <li>Entrega de 15 a 30 dias</li>
         </ul>
       </div>
@@ -269,8 +268,7 @@ def gerar_cidade(g, c):
          "inLanguage": "pt-BR", "isPartOf": {"@id": g.SITE + "/#website"}},
         g.breadcrumb_schema(trail),
         {"@type": "Service", "name": f"Criação de sites em {c['nome']}", "serviceType": "Criação de sites",
-         "provider": g.org_ref(), "areaServed": area, "url": g.SITE + path,
-         "offers": {"@type": "Offer", "priceCurrency": "BRL", "price": "1297", "url": g.SITE + "/planos.html"}},
+         "provider": g.org_ref(), "areaServed": area, "url": g.SITE + path},
         g.faq_schema(faq),
     ]
     return g.page(path, title, c["desc"], body, graph, wpp_msg=msg)

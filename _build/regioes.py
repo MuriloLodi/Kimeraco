@@ -60,7 +60,7 @@ ESTADOS = [
       [("Agronegócio do oeste", "Revendas, consultorias agrícolas e prestadores de serviço de Barreiras e LEM."),
        ("Turismo no litoral", "Pousadas e agências de Porto Seguro, Ilhéus, Morro de São Paulo e Chapada Diamantina."),
        ("Indústria e serviços", "Fornecedores do polo de Camaçari e empresas de serviço em Salvador e Feira de Santana.")],
-      [("Atendem empresas do interior da Bahia?", "Sim. Como tudo é online, não faz diferença estar em Salvador ou em Barreiras. O processo e o preço são os mesmos."),
+      [("Atendem empresas do interior da Bahia?", "Sim. Como tudo é online, não faz diferença estar em Salvador ou em Barreiras. O processo é o mesmo."),
        ("Meu público é do agro. Site funciona para esse setor?", "Funciona. Produtor e comprador pesquisam fornecedor no Google e no celular como qualquer outra pessoa. O site precisa mostrar produto, marca representada e contato rápido.")],
       "Criação de sites na Bahia para agro do oeste, turismo do litoral, indústria e serviços de Salvador. Atendimento 100% online para todo o estado."),
 
@@ -182,7 +182,7 @@ ESTADOS = [
        ("Indústria em Curitiba e região", "Empresas B2B que precisam de site técnico e captação de orçamentos."),
        ("Turismo em Foz", "Hotéis e passeios com site em português, espanhol e inglês.")],
       [("A Kimera é do Paraná?", "Sim. A base é em Toledo, no Oeste do Paraná. Para empresas da região dá para marcar conversa presencial; no resto do estado o atendimento é online."),
-       ("Atendem Curitiba?", "Atendem. Curitiba, Londrina, Maringá e qualquer cidade paranaense têm o mesmo processo e o mesmo preço.")],
+       ("Atendem Curitiba?", "Atendem. Curitiba, Londrina, Maringá e qualquer cidade paranaense têm o mesmo processo.")],
       "Criação de sites no Paraná, com base em Toledo. Atendimento para Curitiba, Londrina, Maringá, Cascavel, Foz e todo o estado, online ou presencial no Oeste."),
 
     S("pernambuco", "Pernambuco", "PE", "em", "Nordeste", "Recife", 0,
@@ -320,9 +320,9 @@ CIDADES = [
       [("Escritórios e consultorias", "Empresas B2B da Faria Lima, Paulista e Berrini que vendem para outras empresas."),
        ("Moda no atacado", "Confecções do Brás e do Bom Retiro com catálogo para lojistas do país inteiro."),
        ("Saúde e estética", "Clínicas e consultórios que disputam paciente por bairro.")],
-      [("Por que contratar alguém de fora de São Paulo?", "Porque o preço é de mercado nacional e você fala direto com quem faz o site. O projeto é igual ao de uma agência paulistana, sem o custo de estrutura de uma agência na capital."),
+      [("Por que contratar alguém de fora de São Paulo?", "Porque você fala direto com quem faz o site. O projeto tem o nível de uma agência paulistana, sem o custo de estrutura de uma agência na capital, e o orçamento sai sem compromisso."),
        ("Dá para aparecer no Google em São Paulo com tanta concorrência?", "Dá, mas não com um site genérico. A estratégia é focar no seu nicho e na sua região da cidade, com páginas específicas para cada serviço e um Perfil da Empresa bem cuidado.")],
-      "Criação de sites em São Paulo (SP) para consultorias, moda no atacado, saúde e negócios de bairro. Preço de mercado nacional e atendimento direto, 100% online."),
+      "Criação de sites em São Paulo (SP) para consultorias, moda no atacado, saúde e negócios de bairro. Atendimento direto com quem faz, 100% online."),
 
     C("rio-de-janeiro-rj", "Rio de Janeiro", "RJ", "estado-do-rio-de-janeiro",
       ["A economia carioca mistura turismo e hotelaria, gastronomia, a sede de grandes empresas de petróleo e energia no Centro, audiovisual e economia criativa, e um comércio forte na Barra da Tijuca e na Zona Sul. A cidade recebe turista o ano inteiro, de dentro e de fora do país.",
@@ -492,7 +492,7 @@ CIDADES = [
       [("Saúde e clínicas", "Consultórios e clínicas com agendamento online."),
        ("Educação", "Faculdades, escolas e cursos com captação de alunos."),
        ("Imobiliário na Gleba Palhano", "Imobiliárias e construtoras com vitrine de imóveis.")],
-      [("Atendem Londrina?", "Atendem, online, dentro do mesmo estado e com o mesmo processo e preço."),
+      [("Atendem Londrina?", "Atendem, online, dentro do mesmo estado e com o mesmo processo."),
        ("Quanto tempo para meu site aparecer no Google em Londrina?", "Depende do segmento, mas como a concorrência é menor que nas capitais, um site bem estruturado costuma começar a aparecer em algumas semanas depois de indexado.")],
       "Criação de sites em Londrina (PR) para clínicas, educação, imobiliárias e serviços. Agência paranaense com atendimento online."),
 ]
