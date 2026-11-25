@@ -457,7 +457,8 @@ CIDADES = [
 
     C("cascavel-pr", "Cascavel", "PR", "parana",
       ["Cascavel é o polo regional do Oeste do Paraná, com cooperativas grandes, comércio forte, uma rede de saúde que atende cidades em volta e cursos de medicina e outras áreas da saúde. Todo ano a cidade recebe o Show Rural Coopavel, uma das maiores feiras de tecnologia agrícola do país.",
-       "Fica a cerca de 50 km de Toledo, então dá para conversar pessoalmente. Muita empresa de Cascavel aproveita o Show Rural para lançar produto, e ter site e landing page prontos antes da feira faz diferença."],
+       "Fica a cerca de 50 km de Toledo, então dá para conversar pessoalmente. Muita empresa de Cascavel aproveita o Show Rural para lançar produto, e ter site e landing page prontos antes da feira faz diferença.",
+       "A cidade também virou referência em ensino de medicina e odontologia no interior, o que trouxe clínicas especializadas e laboratórios que recebem pacientes de Toledo, Corbélia, Santa Tereza do Oeste e outras cidades vizinhas. Para esse público, a busca começa no Google com o nome da especialidade e da cidade."],
       [("Agro e Show Rural", "Revendas e expositores com landing page para a feira."),
        ("Saúde", "Clínicas e consultórios que atendem Cascavel e região."),
        ("Comércio e serviços", "Lojas e empresas que querem aparecer no Google para a cidade.")],
@@ -500,3 +501,7 @@ CIDADES = [
 # Segunda leva (24/11/2026)
 from cidades2 import CIDADES2  # noqa: E402
 CIDADES += CIDADES2
+
+# Terceira leva (25/11/2026)
+from cidades3 import CIDADES3  # noqa: E402
+CIDADES += CIDADES3
