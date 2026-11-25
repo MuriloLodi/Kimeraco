@@ -496,3 +496,7 @@ CIDADES = [
        ("Quanto tempo para meu site aparecer no Google em Londrina?", "Depende do segmento, mas como a concorrência é menor que nas capitais, um site bem estruturado costuma começar a aparecer em algumas semanas depois de indexado.")],
       "Criação de sites em Londrina (PR) para clínicas, educação, imobiliárias e serviços. Agência paranaense com atendimento online."),
 ]
+
+# Segunda leva (24/11/2026)
+from cidades2 import CIDADES2  # noqa: E402
+CIDADES += CIDADES2

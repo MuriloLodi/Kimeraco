@@ -3432,3 +3432,17 @@ body {
         min-height: 86svh;
       }
     }
+
+/* ─── Ajustes SEO nacional (nov/2026) ─────────────────────────── */
+/* Título da home acompanha a largura da tela (as frases ficaram mais longas) */
+@media (min-width: 751px) {
+  .hero-title { font-size: clamp(60px, 6.3vw, 95px); }
+}
+/* Planos sem preço: "Sob orçamento" cabe no card */
+.pricing-price.pricing-price--orcamento { font-size: clamp(1.6rem, 2.4vw, 2.2rem); letter-spacing: -0.02em; }
+/* Lista de links para as páginas de serviço (home e serviços) */
+.servicos-detalhe { margin-top: var(--sp-48); }
+.servicos-detalhe p { color: rgba(255, 255, 255, 0.64); font-family: var(--font-mono); font-size: var(--t-xs); letter-spacing: .08em; text-transform: uppercase; margin-bottom: var(--sp-16); }
+.servicos-detalhe ul { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; }
+.servicos-detalhe a { display: inline-block; padding: 10px 16px; border: 1px solid var(--c-border); border-radius: var(--r-pill); color: var(--c-white-72); font-size: var(--t-sm); transition: border-color .2s ease, color .2s ease; }
+.servicos-detalhe a:hover { border-color: var(--c-accent); color: var(--c-white); }
