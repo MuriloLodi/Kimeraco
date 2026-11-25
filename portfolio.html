@@ -503,13 +503,26 @@
 
         /* ──── UTILS ──────────────────────────────────────────────── */
         function splitTextWords(el) {
-            if (!el) return [];
-            const text = el.textContent.trim();
-            el.innerHTML = text.split(/\s+/).map(w =>
-                `<span class="sw" style="display:inline-block;overflow:hidden;"><span class="swi" style="display:inline-block;">${w}</span></span>`
-            ).join(' ');
-            return el.querySelectorAll('.swi');
-        }
+      // Separa as palavras para a animação sem apagar <br> nem destaques (span.accent)
+      if (!el) return [];
+      const walk = node => {
+        [...node.childNodes].forEach(n => {
+          if (n.nodeType === 3) {
+            const frag = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach(p => {
+              if (!p) return;
+              if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(' ')); return; }
+              const sw = document.createElement('span'); sw.className = 'sw'; sw.style.cssText = 'display:inline-block;overflow:hidden;';
+              const swi = document.createElement('span'); swi.className = 'swi'; swi.style.display = 'inline-block'; swi.textContent = p;
+              sw.appendChild(swi); frag.appendChild(sw);
+            });
+            n.replaceWith(frag);
+          } else if (n.nodeType === 1 && n.tagName !== 'BR') { walk(n); }
+        });
+      };
+      walk(el);
+      return el.querySelectorAll('.swi');
+    }
 
         function initRipples() {
             document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
@@ -1025,6 +1038,8 @@
             setTimeout(() => {
                 pop.classList.add('show');
                 pop.setAttribute('aria-hidden', 'false');
+        // some sozinho depois de 12 s para não ficar cobrindo o conteúdo (principalmente no celular)
+        setTimeout(() => { pop.classList.remove('show'); pop.setAttribute('aria-hidden', 'true'); sessionStorage.setItem(KEY, '1'); }, 12000);
             }, 5000);
 
             pop.querySelector('.wpp-pop-close')?.addEventListener('click', () => {

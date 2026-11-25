@@ -3446,3 +3446,14 @@ body {
 .servicos-detalhe ul { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; }
 .servicos-detalhe a { display: inline-block; padding: 10px 16px; border: 1px solid var(--c-border); border-radius: var(--r-pill); color: var(--c-white-72); font-size: var(--t-sm); transition: border-color .2s ease, color .2s ease; }
 .servicos-detalhe a:hover { border-color: var(--c-accent); color: var(--c-white); }
+/* Chamada final: largura para o título caber nas 3 linhas previstas no HTML */
+.cta-inner { max-width: 1000px; }
+.cta-sub { max-width: 640px; margin-left: auto; margin-right: auto; }
+/* Celular/tablet sem mouse: nome do projeto sempre visível nos cards do portfólio */
+@media (hover: none) {
+  .portfolio-card-overlay { opacity: 1; }
+  .portfolio-card-info { opacity: 1; transform: none; padding: var(--sp-20); }
+}
+/* Celulares estreitos: título do hero cabe sem cortar palavra (ex.: "convertem." no portfólio) */
+@media (max-width: 400px) { .hero-title { font-size: 36px !important; } }
+@media (max-width: 360px) { .hero-title { font-size: 32px !important; } }
